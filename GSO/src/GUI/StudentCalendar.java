@@ -20,10 +20,17 @@ public class StudentCalendar extends JFrame{
 	private JLabel label1, label2, label3, label4, label5, label6;
 	private JScrollPane scroll1;
 	private JButton button1;
-	private Graphics g;
+	private JTabbedPane tabbedPane;
+	JPanel event, homework, reminder;
 	
-	//Object that connects to sql
-	//Tasklist tasks = new Tasklist();
+	protected JComponent makeTextPanel(String text) {
+	    JPanel panel = new JPanel(false);
+	    JLabel filler = new JLabel(text);
+	    filler.setHorizontalAlignment(JLabel.CENTER);
+	    panel.setLayout(new GridLayout(1, 1));
+	    panel.add(filler);
+		return panel;
+	}
 	
 	public StudentCalendar()
 	{
@@ -220,16 +227,27 @@ public class StudentCalendar extends JFrame{
 		label4.setSize(100,30);
 		label4.setLocation(600, 120);
 		add(label4);
+		////////////////////////////////////
+		//Tabs start here
+		////////////////////////////////////
+		
+		tabbedPane = new JTabbedPane();
+		tabbedPane.setSize(320, 435);
+		tabbedPane.setLocation(560, 150);
+		
+		JComponent panel1 = makeTextPanel("Panel1");
+		event = new JPanel();
+		tabbedPane.addTab("Event", event);
 		label3 = new JLabel("Task: ");
 		label3.setSize(100,30);
 		label3.setLocation(600, 170);
-		add(label3);
+		event.add(label3);
 		
 		//Text field for "Task"
 		textField2 = new JTextField();
 		textField2.setSize(200,30);
 		textField2.setLocation(650,170);
-		add(textField2);
+		event.add(textField2);
 		
 		//////////
 		//Priority
@@ -237,13 +255,13 @@ public class StudentCalendar extends JFrame{
 		label2 = new JLabel("Priority: ");
 		label2.setSize(100,30);
 		label2.setLocation(600, 200);
-		add(label2);
+		event.add(label2);
 		
 		//Text field for "Priority"
 		textField1 = new JTextField();
 		textField1.setSize(30, 30);
 		textField1.setLocation(650, 200);
-		add(textField1);
+		event.add(textField1);
 		
 		/////////////
 		//Description
@@ -251,8 +269,8 @@ public class StudentCalendar extends JFrame{
 		label1 = new JLabel("Description");
 		label1.setSize(100,30);
 		label1.setLocation(600, 230);
-		add(label1);
-		
+		event.add(label1);
+		/*
 		//Text area for "Description"
 		textArea1 = new JTextArea();
 		textArea1.setLineWrap(true);
@@ -260,8 +278,18 @@ public class StudentCalendar extends JFrame{
 	    textArea1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		textArea1.setLocation(600, 255);
 		textArea1.setSize(250, 330);
-		add(textArea1);
-		//////////Scroll missing
+		event.add(textArea1);
+		*/
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		
+		JComponent panel2 = makeTextPanel("Panel2");
+		tabbedPane.addTab("Homework", panel2);
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		
+		JComponent panel3 = makeTextPanel("Panel3");
+		tabbedPane.addTab("Reminder", panel3);
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		add(tabbedPane);
 		
 		button1 = new JButton("Add Task");
 		button1.setSize(100,30);
