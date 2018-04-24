@@ -235,7 +235,7 @@ public class StudentCalendar extends JFrame{
 		tabbedPane.setSize(320, 435);
 		tabbedPane.setLocation(560, 150);
 		
-		JComponent panel1 = makeTextPanel("Panel1");
+		JComponent panel1 = makeTextPanel("Panel2");
 		event = new JPanel();
 		tabbedPane.addTab("Event", event);
 		label3 = new JLabel("Task: ");
