@@ -2,7 +2,6 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.*;
 
@@ -10,14 +9,11 @@ import java.awt.event.*;
 public class StudentCalendar extends JFrame{
 
 	private JTextArea textArea1, textArea2;
-	private JTable table1;
-	private DefaultTableModel dm;
-	private String[] columnNames = {"Task", "Priority"};
 	private JTextField textField1, textField2, textField3, textField4, textField5, textField6, textField7, textField8, textField9;
-	private JTextField textField10, textField11, textField12, textField13, textField14, textField15, textField16;
+	private JTextField textField10, textField11, textField12, textField13, textField14, textField15, textField16, textField17, textField18;
 	private JTextField sunF, monF, tueF, wedF, thuF, friF, satF;
 	private JLabel sun, mon, tue, wed, thu, fri, sat;
-	private JLabel label1, label2, label3, label4, label5, label6;
+	private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9;
 	private JScrollPane scroll1;
 	private JButton button1;
 	private JTabbedPane tabbedPane;
@@ -197,14 +193,14 @@ public class StudentCalendar extends JFrame{
 		label6.setSize(100,30);
 		label6.setLocation(10, 120);
 		add(label6);
-		
+		/*
 		table1 = new JTable();
 		table1.setLocation(10,180);
 		table1.setSize(200,410);
 		add(table1);
 		//dm = new DefaultTableModel(tasks.getTable0(), columnNames);
 		//table1.setModel(dm);
-		
+		*/
 		
 		////////////Task Description Area
 		label5 = new JLabel("Task Description");
@@ -235,51 +231,89 @@ public class StudentCalendar extends JFrame{
 		tabbedPane.setSize(320, 435);
 		tabbedPane.setLocation(560, 150);
 		
-		JComponent panel1 = makeTextPanel("Panel2");
 		event = new JPanel();
+		event.setLayout(null);
 		tabbedPane.addTab("Event", event);
-		label3 = new JLabel("Task: ");
+		label3 = new JLabel("Event Name: ");
 		label3.setSize(100,30);
-		label3.setLocation(600, 170);
+		label3.setLocation(0,0);
 		event.add(label3);
 		
 		//Text field for "Task"
 		textField2 = new JTextField();
-		textField2.setSize(200,30);
-		textField2.setLocation(650,170);
+		textField2.setSize(250,30);
+		textField2.setLocation(80,0);
 		event.add(textField2);
 		
 		//////////
-		//Priority
+		//Date
 		//////////
-		label2 = new JLabel("Priority: ");
+		label2 = new JLabel("Date: ");
 		label2.setSize(100,30);
-		label2.setLocation(600, 200);
+		label2.setLocation(0, 30);
 		event.add(label2);
 		
 		//Text field for "Priority"
-		textField1 = new JTextField();
-		textField1.setSize(30, 30);
-		textField1.setLocation(650, 200);
+		textField1 = new JTextField("MM-DD-YYYY");
+		textField1.setSize(100, 30);
+		textField1.setLocation(35, 30);
 		event.add(textField1);
+		
+		/////////////
+		//Priority
+		/////////////
+		label1 = new JLabel("Priority: ");
+		label1.setSize(100,30);
+		label1.setLocation(150, 30);
+		event.add(label1);
+
+		textField16 = new JTextField("1,2 or 3");
+		textField16.setSize(50,30);
+		textField16.setLocation(200,30);
+		event.add(textField16);
+		
+		/////////////
+		//Location
+		/////////////
+		label7 = new JLabel("Location: ");
+		label7.setSize(100, 30);
+		label7.setLocation(0, 60);
+		event.add(label7);
+		
+		textField17 = new JTextField();
+		textField17.setSize(190, 30);
+		textField17.setLocation(60, 60);
+		event.add(textField17);
+		
+		/////////////
+		//Time
+		/////////////
+		label8 = new JLabel("Time: ");
+		label8.setSize(100,30);
+		label8.setLocation(0, 90);
+		event.add(label8);
+		
+		textField18 = new JTextField("HH:MM");
+		textField18.setSize(70,30);
+		textField18.setLocation(60, 90);
+		event.add(textField18);
 		
 		/////////////
 		//Description
 		/////////////
-		label1 = new JLabel("Description");
-		label1.setSize(100,30);
-		label1.setLocation(600, 230);
-		event.add(label1);
-		/*
-		//Text area for "Description"
+		label9 = new JLabel("Description: ");
+		label9.setSize(100,30);
+		label9.setLocation(0, 120);
+		event.add(label9);
+		
 		textArea1 = new JTextArea();
 		textArea1.setLineWrap(true);
 	    textArea1.setWrapStyleWord(true);
 	    textArea1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		textArea1.setLocation(600, 255);
-		textArea1.setSize(250, 330);
+		textArea1.setLocation(0, 150);
+		textArea1.setSize(315, 260);
 		event.add(textArea1);
-		*/
+		
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
 		JComponent panel2 = makeTextPanel("Panel2");
