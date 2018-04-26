@@ -20,18 +20,11 @@ public class StudentCalendar extends JFrame{
 	private JLabel rmL1, rmL2, rmL3, rmL4;
 	private JScrollPane scroll1;
 	private JRadioButton yeah, nah;
+	private JPanel buttonPanel;
+	private GridBagConstraints constraint;
 	private JButton button1;
 	private JTabbedPane tabbedPane;
 	JPanel event, homework, reminder;
-	
-	protected JComponent makeTextPanel(String text) {
-	    JPanel panel = new JPanel(false);
-	    JLabel filler = new JLabel(text);
-	    filler.setHorizontalAlignment(JLabel.CENTER);
-	    panel.setLayout(new GridLayout(1, 1));
-	    panel.add(filler);
-		return panel;
-	}
 	
 	public StudentCalendar()
 	{
@@ -192,20 +185,51 @@ public class StudentCalendar extends JFrame{
 		add(textField15);
 		
 		
-		
-		////////////Task table
+		////////////////////////////////////
+		//Task table starts here
+		////////////////////////////////////
+
 		label6 = new JLabel("Tasks");
 		label6.setSize(100,30);
 		label6.setLocation(10, 120);
 		add(label6);
-		/*
-		table1 = new JTable();
-		table1.setLocation(10,180);
-		table1.setSize(200,410);
-		add(table1);
-		//dm = new DefaultTableModel(tasks.getTable0(), columnNames);
-		//table1.setModel(dm);
-		*/
+
+		scroll1 = new JScrollPane();
+		scroll1.setLocation(10, 160);
+		scroll1.getVerticalScrollBar().setUnitIncrement(15);
+	    scroll1.setSize(new Dimension(280, 430));
+
+	    buttonPanel = new JPanel();
+	    buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+	    buttonPanel.setLayout(new GridBagLayout());
+	    buttonPanel.setSize(new Dimension(300, 400));
+
+	    constraint = new GridBagConstraints();
+	    constraint.anchor = GridBagConstraints.CENTER;
+	    constraint.fill = GridBagConstraints.HORIZONTAL;
+	    constraint.ipady = 35;
+	    constraint.gridx = 0;
+	    constraint.gridy = GridBagConstraints.RELATIVE;
+	    constraint.weightx = 1.0f;
+	    constraint.weighty = 1.0f;
+
+	    //Depends on events
+	    int sizeOfButtons = 15;
+	    for(int i = 0; i < sizeOfButtons; i++) {
+	        JButton button = new JButton();
+
+	        //Will set to task name
+	        button.setText("Button #" + (i+1));
+
+	        button.setHorizontalAlignment(SwingConstants.LEFT);
+	        buttonPanel.add(button, constraint);
+	    }
+
+	    scroll1.setViewportView(buttonPanel);
+	    this.rootPane.add(scroll1);
+	    scroll1.updateUI();
+
+		
 		
 		////////////Task Description Area
 		label5 = new JLabel("Task Description");
