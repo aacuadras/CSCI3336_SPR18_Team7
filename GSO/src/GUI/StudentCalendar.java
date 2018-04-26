@@ -24,7 +24,7 @@ public class StudentCalendar extends JFrame{
 	private GridBagConstraints constraint;
 	private JButton button1;
 	private JTabbedPane tabbedPane;
-	JPanel event, homework, reminder;
+	private JPanel event, homework, reminder;
 	
 	public StudentCalendar()
 	{
@@ -228,7 +228,6 @@ public class StudentCalendar extends JFrame{
 	    scroll1.setViewportView(buttonPanel);
 	    this.rootPane.add(scroll1);
 	    scroll1.updateUI();
-
 		
 		
 		////////////Task Description Area
