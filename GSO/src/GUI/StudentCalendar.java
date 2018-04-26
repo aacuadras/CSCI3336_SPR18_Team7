@@ -8,13 +8,18 @@ import java.awt.event.*;
 
 public class StudentCalendar extends JFrame{
 
-	private JTextArea textArea1, textArea2;
+	private JTextArea textArea1, textArea2, textArea3, textArea4;
 	private JTextField textField1, textField2, textField3, textField4, textField5, textField6, textField7, textField8, textField9;
 	private JTextField textField10, textField11, textField12, textField13, textField14, textField15, textField16, textField17, textField18;
 	private JTextField sunF, monF, tueF, wedF, thuF, friF, satF;
+	private JTextField hwTF1, hwTF2, hwTF3, hwTF4;
+	private JTextField rmTF1, rmTF2, rmTF3;
 	private JLabel sun, mon, tue, wed, thu, fri, sat;
 	private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9;
+	private JLabel hwL1, hwL2, hwL3, hwL4, hwL5, hwL6;
+	private JLabel rmL1, rmL2, rmL3, rmL4;
 	private JScrollPane scroll1;
+	private JRadioButton yeah, nah;
 	private JButton button1;
 	private JTabbedPane tabbedPane;
 	JPanel event, homework, reminder;
@@ -210,7 +215,7 @@ public class StudentCalendar extends JFrame{
 		textArea2 = new JTextArea();
 		textArea2.setLineWrap(true);
 	    textArea2.setWrapStyleWord(true);
-	    textArea2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	    textArea2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		textArea2.setLocation(300, 180);
 		textArea2.setSize(250, 405);
 		add(textArea2);
@@ -309,19 +314,176 @@ public class StudentCalendar extends JFrame{
 		textArea1 = new JTextArea();
 		textArea1.setLineWrap(true);
 	    textArea1.setWrapStyleWord(true);
-	    textArea1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	    textArea1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		textArea1.setLocation(0, 150);
 		textArea1.setSize(315, 260);
 		event.add(textArea1);
 		
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
-		JComponent panel2 = makeTextPanel("Panel2");
-		tabbedPane.addTab("Homework", panel2);
+		////////////////////////////////
+		//Homework Tab
+		////////////////////////////////
+		homework = new JPanel();
+		homework.setLayout(null);
+		tabbedPane.addTab("Homework", homework);
+		
+		/////////////////
+		//Assignment
+		/////////////////
+		hwL1 = new JLabel("Homework Assign.: ");
+		hwL1.setSize(120,30);
+		hwL1.setLocation(0,0);
+		homework.add(hwL1);
+		
+		hwTF1 = new JTextField();
+		hwTF1.setSize(200, 30);
+		hwTF1.setLocation(120, 0);
+		homework.add(hwTF1);
+		
+		//////////////////
+		//Date
+		//////////////////
+		hwL2 = new JLabel("Date: ");
+		hwL2.setSize(100,30);
+		hwL2.setLocation(0,30);
+		homework.add(hwL2);
+		
+		hwTF2 = new JTextField("MM-DD-YYYY");
+		hwTF2.setSize(100,30);
+		hwTF2.setLocation(35,30);
+		homework.add(hwTF2);
+		
+		/////////////
+		//Priority
+		/////////////
+		hwL3 = new JLabel("Priority: ");
+		hwL3.setSize(100,30);
+		hwL3.setLocation(150, 30);
+		homework.add(hwL3);
+	
+		hwTF3 = new JTextField("1,2 or 3");
+		hwTF3.setSize(50,30);
+		hwTF3.setLocation(200,30);
+		homework.add(hwTF3);
+		
+		/////////////
+		//Deadline
+		/////////////
+		hwL4 = new JLabel("Deadline: ");
+		hwL4.setSize(100,30);
+		hwL4.setLocation(0,60);
+		homework.add(hwL4);
+		
+		hwTF4 = new JTextField("MM-DD-YYYY");
+		hwTF4.setSize(100,30);
+		hwTF4.setLocation(60,60);
+		homework.add(hwTF4);
+		
+		/////////////
+		//Complete
+		/////////////
+		hwL5 = new JLabel("Complete: ");
+		hwL5.setSize(100,30);
+		hwL5.setLocation(0,90);
+		homework.add(hwL5);
+		
+		yeah = new JRadioButton("Yes", false);
+		nah = new JRadioButton("No", true);
+		ButtonGroup group = new ButtonGroup();
+		yeah.setSize(60,30);
+		nah.setSize(60,30);
+		homework.add(yeah);
+        homework.add(nah);
+        group.add(yeah);
+        group.add(nah);
+        
+        Insets insets = homework.getInsets();
+        Dimension size = yeah.getSize();
+        yeah.setBounds(90 + insets.left, 90 + insets.top, size.width, size.height);
+        size = nah.getSize();
+        nah.setBounds(170 + insets.left, 90 + insets.top, size.width, size.height);
+		
+		/////////////
+		//Description
+		/////////////
+		hwL6 = new JLabel("Description: ");
+		hwL6.setSize(100,30);
+		hwL6.setLocation(0,120);
+		homework.add(hwL6);
+		
+		textArea3 = new JTextArea();
+		textArea1.setLineWrap(true);
+	    textArea1.setWrapStyleWord(true);
+	    textArea1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		textArea3.setSize(315,260);
+		textArea3.setLocation(0,150);
+		homework.add(textArea3);
+		
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		
-		JComponent panel3 = makeTextPanel("Panel3");
-		tabbedPane.addTab("Reminder", panel3);
+		////////////////////////////////
+		//Reminder Tab
+		////////////////////////////////
+		reminder = new JPanel();
+		reminder.setLayout(null);
+		tabbedPane.addTab("Reminder", reminder);
+		
+		/////////////////
+		//Reminder
+		/////////////////
+		rmL1 = new JLabel("Reminder: ");
+		rmL1.setSize(100,30);
+		rmL1.setLocation(0,0);
+		reminder.add(rmL1);
+		
+		rmTF1 = new JTextField();
+		rmTF1.setSize(250,30);
+		rmTF1.setLocation(70,0);
+		reminder.add(rmTF1);
+		
+		/////////////////
+		//Date
+		/////////////////
+		rmL2 = new JLabel("Date: ");
+		rmL2.setSize(100,30);
+		rmL2.setLocation(0,30);
+		reminder.add(rmL2);
+		
+		rmTF2 = new JTextField("MM-DD-YYYY");
+		rmTF2.setSize(100,30);
+		rmTF2.setLocation(35,30);
+		reminder.add(rmTF2);
+		
+		/////////////////
+		//Priority
+		/////////////////
+		rmL3 = new JLabel("Priority: ");
+		rmL3.setSize(100,30);
+		rmL3.setLocation(150,30);
+		reminder.add(rmL3);
+		
+		rmTF3 = new JTextField("1,2 or 3");
+		rmTF3.setSize(50,30);
+		rmTF3.setLocation(200,30);
+		reminder.add(rmTF3);
+		
+		/////////////////
+		//Description
+		/////////////////
+		rmL4 = new JLabel("Description: ");
+		rmL4.setSize(100,30);
+		rmL4.setLocation(0,60);
+		reminder.add(rmL4);
+		
+		textArea4 = new JTextArea();
+		textArea4.setLineWrap(true);
+	    textArea4.setWrapStyleWord(true);
+	    textArea4.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		textArea4.setSize(315,320);
+		textArea4.setLocation(0,90);
+		reminder.add(textArea4);
+		
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 		add(tabbedPane);
 		
