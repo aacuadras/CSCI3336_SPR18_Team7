@@ -330,7 +330,6 @@ public class StudentCalendar extends JFrame{
 		button1.setLocation(750, 600);
 		//button1.addActionListener(new Button1Clicked());
 		add(button1);
-		add(new Painter());
 		
 		setVisible(true);
 	}
