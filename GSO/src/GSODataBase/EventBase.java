@@ -51,6 +51,17 @@ public class EventBase {
         connection.close();
 	}
 
+	//Sets the given ID to the only id in the table TopId
+	private void setTopId(int id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
+		Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection connection = DriverManager.getConnection("jdbc:mysql://35.225.154.164:3306/GSO?autoReconnect=true&useSSL=false","root", "12345");
+        Statement statement = connection.createStatement();
+        String change = "update TopId set ID = '" + id + "'";
+        statement.executeUpdate(change);
+        connection.close();
+	}
+
 	
 
 	/////////////////////////////////////////////////////////////
@@ -64,6 +75,7 @@ public class EventBase {
         String insert = "insert into Event_Note (ID, NoteType, EventName, EventDesc, Priority, theDate, Location, Duration) values ('" + id + "', '" + type + "', '" + name + "', '" + desc + "', '" + priority + "', '" + date + "', '" + location + "', '" + duration + "')";
 		statement.executeUpdate(insert);
 		searchDateBase(date, id);
+		setTopId(id);
 		connection.close();
 	}
 
@@ -75,6 +87,7 @@ public class EventBase {
         String insert = "insert into Event_Note (ID, NoteType, EventName, EventDesc, Priority, theDate, Deadline, Complete) values ('" + id + "', '" + type + "', '" + name + "', '" + desc + "', '" + priority + "', '" + date + "', '" + deadline + "', '" + complete + "')";
 		statement.executeUpdate(insert);
 		searchDateBase(date, id);
+		setTopId(id);
 		connection.close();
 	}
 
@@ -86,6 +99,7 @@ public class EventBase {
         String insert = "insert into Event_Note (ID, NoteType, EventName, EventDesc, Priority, theDate) values ('" + id + "', '" + type + "', '" + name + "', '" + desc + "', '" + priority + "', '" + date + "')";
 		statement.executeUpdate(insert);
 		searchDateBase(date, id);
+		setTopId(id);
 		connection.close();
 	}
 	/////////////////////////////////////////////////////////////
@@ -116,6 +130,8 @@ public class EventBase {
         Connection connection = DriverManager.getConnection("jdbc:mysql://35.225.154.164:3306/GSO?autoReconnect=true&useSSL=false","root", "12345");
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery("select * from Event_Note");
+
+        System.out.println("Info in the Event_Note table");
         while (rs.next())
         {
         	if (rs.getInt(2) == 1)
