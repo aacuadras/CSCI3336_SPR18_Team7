@@ -2,33 +2,32 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
-
 import java.awt.event.*;
-import java.awt.geom.Line2D;
 
 
 public class StudentCalendar extends JFrame{
 
-	private JTextArea textArea1, textArea2, textArea3, textArea4;
-	private JTextField textField1, textField2, textField3, textField4, textField5;
-	private JTextField sunF, monF, tueF, wedF, thuF, friF, satF;
-	private JTextField hwTF1, hwTF2, hwTF3, hwTF4;
-	private JTextField rmTF1, rmTF2, rmTF3;
-	private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9;
-	private JLabel hwL1, hwL2, hwL3, hwL4, hwL5, hwL6;
-	private JLabel rmL1, rmL2, rmL3, rmL4;
-	private JScrollPane scroll1;
-	private JRadioButton yeah, nah;
-	private JPanel buttonPanel;
-	private GridBagConstraints constraint;
-	private JButton button1, sunB, monB, tueB, wedB, thuB, friB, satB;
-	private JTabbedPane tabbedPane;
-	private JPanel event, homework, reminder, pan;
-	private JSeparator sep, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10;
+	private JTextArea textArea1, textArea2, textArea3, textArea4;		//Text Areas for Tasks descriptions
+	private JTextField textField1, textField2, textField3, textField4, textField5;  	//Text fields for "event" tab
+	private JTextField sunF, monF, tueF, wedF, thuF, friF, satF;	//Text fields for the day of the month number
+	private JTextField hwTF1, hwTF2, hwTF3, hwTF4;		//Text fields for "homework" tab
+	private JTextField rmTF1, rmTF2, rmTF3;		//Text fields for "reminder" tab
+	private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9;		//Labels for "event" tab
+	private JLabel hwL1, hwL2, hwL3, hwL4, hwL5, hwL6;		//Labels for "homework" tab
+	private JLabel rmL1, rmL2, rmL3, rmL4;		//Labels for "reminder" tab
+	private JScrollPane scroll1;		//Scroll for button table
+	private JRadioButton yeah, nah;		//Radio buttons in "homework" tab
+	private JPanel buttonPanel;			//Button panel for radio buttons
+	private GridBagConstraints constraint;		//Constraints for button table
+	private JButton button1, sunB, monB, tueB, wedB, thuB, friB, satB;	//"Add task" button and buttons for the days of the week
+	private JTabbedPane tabbedPane;		//Tabs variable
+	private JPanel event, homework, reminder;		//Panels necessary for tabs
+	private JSeparator sep, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10;	//Lines
 	
 	
 	public StudentCalendar()
 	{
+		//Setting size for the window
 		super("Student Calendar");
 		setSize(895,680);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,85 +36,96 @@ public class StudentCalendar extends JFrame{
 		int x = (int) ((dimension.getWidth() - getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - getHeight()) / 2);
 		setLocation(x, y);
+	
 		
 		////////////Days
+		
+		//Sunday
 		sunF = new JTextField();
 		sunF.setSize(30,30);
 		sunF.setLocation(70,0);
 		sunF.setEditable(false);
 		add(sunF);
+		//Pressing this button changes the table to the tasks for sunday
 		sunB = new JButton("Sunday");
 		sunB.setSize(100,70);
 		sunB.setLocation(0,30);
 		add(sunB);
 		
-		
+		//Monday
 		monF = new JTextField();
 		monF.setSize(30,30);
 		monF.setLocation(200,0);
 		monF.setEditable(false);
 		add(monF);
+		//Pressing this button changes the table to the tasks for monday
 		monB = new JButton("Monday");
 		monB.setSize(100,70);
 		monB.setLocation(130,30);
 		add(monB);
 		
-
+		//Tuesday
 		tueF = new JTextField();
 		tueF.setSize(30,30);
 		tueF.setLocation(330,0);
 		tueF.setEditable(false);
 		add(tueF);
+		//Pressing this button changes the table to the tasks for tuesday
 		tueB = new JButton("Tuesday");
 		tueB.setSize(100,70);
 		tueB.setLocation(260,30);
 		add(tueB);
 		
-		
+		//Wednesday
 		wedF = new JTextField();
 		wedF.setSize(30,30);
 		wedF.setLocation(465,0);
 		wedF.setEditable(false);
 		add(wedF);
+		//Pressing this button changes the table to the tasks for wednesday
 		wedB = new JButton("Wednesday");
 		wedB.setSize(105,70);
 		wedB.setLocation(390,30);
 		add(wedB);
 		
-		
+		//Thursday
 		thuF = new JTextField();
 		thuF.setSize(30,30);
 		thuF.setLocation(590,0);
 		thuF.setEditable(false);
 		add(thuF);
+		//Pressing this button changes the table to the tasks for thursday
 		thuB = new JButton("Thursday");
 		thuB.setSize(100,70);
 		thuB.setLocation(520,30);
 		add(thuB);
 		
-		
+		//Friday
 		friF = new JTextField();
 		friF.setSize(30,30);
 		friF.setLocation(720,0);
 		friF.setEditable(false);
 		add(friF);
+		//Pressing this button changes the table to the tasks for friday
 		friB = new JButton("Friday");
 		friB.setSize(100,70);
 		friB.setLocation(650,30);
 		add(friB);
 		
-		
+		//Saturday
 		satF = new JTextField();
 		satF.setSize(30,30);
 		satF.setLocation(850,0);
 		satF.setEditable(false);
 		add(satF);
+		//Pressing this button changes the table to the tasks for saturday
 		satB = new JButton("Saturday");
 		satB.setSize(100,70);
 		satB.setLocation(780,30);
 		add(satB);
 		
 		
+		//////////Separators for "Tasks", "Task Description", "Add Task"
 		sep = new JSeparator();
 		sep.setOrientation(SwingConstants.HORIZONTAL);
 		sep.setSize(900,30);
@@ -140,6 +150,7 @@ public class StudentCalendar extends JFrame{
 		sep4.setLocation(555,120);
 		add(sep4);
 		
+		//////////Separators for days
 		sep5 = new JSeparator();
 		sep5.setOrientation(SwingConstants.VERTICAL);
 		sep5.setSize(30,100);
@@ -175,6 +186,7 @@ public class StudentCalendar extends JFrame{
 		sep10.setSize(30,100);
 		sep10.setLocation(765,10);
 		add(sep10);
+		
 		
 		////////////////////////////////////
 		//Task table starts here
@@ -240,8 +252,9 @@ public class StudentCalendar extends JFrame{
 		///////////
 		label4 = new JLabel("Add Task");
 		label4.setSize(100,30);
-		label4.setLocation(600, 120);
+		label4.setLocation(560, 120);
 		add(label4);
+		
 		////////////////////////////////////
 		//Tabs start here
 		////////////////////////////////////
@@ -403,7 +416,7 @@ public class StudentCalendar extends JFrame{
 		homework.add(hwL5);
 		
 		yeah = new JRadioButton("Yes", false);
-		nah = new JRadioButton("No", true);
+		nah = new JRadioButton("No", false);
 		ButtonGroup group = new ButtonGroup();
 		yeah.setSize(60,30);
 		nah.setSize(60,30);
@@ -418,6 +431,7 @@ public class StudentCalendar extends JFrame{
         size = nah.getSize();
         nah.setBounds(170 + insets.left, 90 + insets.top, size.width, size.height);
 		
+        
 		/////////////
 		//Description
 		/////////////
@@ -506,7 +520,6 @@ public class StudentCalendar extends JFrame{
 		button1.setLocation(750, 600);
 		//button1.addActionListener(new Button1Clicked());
 		add(button1);
-		
 		
 		setVisible(true);
 	}
