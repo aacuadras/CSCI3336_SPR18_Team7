@@ -4,17 +4,16 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.awt.geom.Line2D;
 
 
 public class StudentCalendar extends JFrame{
 
 	private JTextArea textArea1, textArea2, textArea3, textArea4;
-	private JTextField textField1, textField2, textField3, textField4, textField5, textField6, textField7, textField8, textField9;
-	private JTextField textField10, textField11, textField12, textField13, textField14, textField15, textField16, textField17, textField18;
+	private JTextField textField1, textField2, textField3, textField4, textField5;
 	private JTextField sunF, monF, tueF, wedF, thuF, friF, satF;
 	private JTextField hwTF1, hwTF2, hwTF3, hwTF4;
 	private JTextField rmTF1, rmTF2, rmTF3;
-	private JLabel sun, mon, tue, wed, thu, fri, sat;
 	private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9;
 	private JLabel hwL1, hwL2, hwL3, hwL4, hwL5, hwL6;
 	private JLabel rmL1, rmL2, rmL3, rmL4;
@@ -22,14 +21,16 @@ public class StudentCalendar extends JFrame{
 	private JRadioButton yeah, nah;
 	private JPanel buttonPanel;
 	private GridBagConstraints constraint;
-	private JButton button1;
+	private JButton button1, sunB, monB, tueB, wedB, thuB, friB, satB;
 	private JTabbedPane tabbedPane;
-	private JPanel event, homework, reminder;
+	private JPanel event, homework, reminder, pan;
+	private JSeparator sep, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10;
+	
 	
 	public StudentCalendar()
 	{
 		super("Student Calendar");
-		setSize(900,700);
+		setSize(895,680);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -38,152 +39,142 @@ public class StudentCalendar extends JFrame{
 		setLocation(x, y);
 		
 		////////////Days
-		sun = new JLabel("Sunday");
-		sun.setSize(100,30);
-		sun.setLocation(0,0);
-		add(sun);
 		sunF = new JTextField();
 		sunF.setSize(30,30);
-		sunF.setLocation(100,0);
+		sunF.setLocation(70,0);
 		sunF.setEditable(false);
 		add(sunF);
-		textField3 = new JTextField();
-		textField3.setSize(130,30);
-		textField3.setLocation(0,35);
-		textField3.setEditable(false);
-		add(textField3);
-		textField4 = new JTextField();
-		textField4.setSize(130,30);
-		textField4.setLocation(0,65);
-		textField4.setEditable(false);
-		add(textField4);
+		sunB = new JButton("Sunday");
+		sunB.setSize(100,70);
+		sunB.setLocation(0,30);
+		add(sunB);
 		
 		
-		mon = new JLabel("Monday");
-		mon.setSize(100,30);
-		mon.setLocation(150,0);
-		add(mon);
 		monF = new JTextField();
 		monF.setSize(30,30);
-		monF.setLocation(250,0);
+		monF.setLocation(200,0);
 		monF.setEditable(false);
 		add(monF);
-		textField5 = new JTextField();
-		textField5.setSize(130,30);
-		textField5.setLocation(150,35);
-		textField5.setEditable(false);
-		add(textField5);
-		textField6 = new JTextField();
-		textField6.setSize(130,30);
-		textField6.setLocation(150,65);
-		textField6.setEditable(false);
-		add(textField6);
+		monB = new JButton("Monday");
+		monB.setSize(100,70);
+		monB.setLocation(130,30);
+		add(monB);
 		
-		
-		tue = new JLabel("Tuesday");
-		tue.setSize(100,30);
-		tue.setLocation(300,0);
-		add(tue);
+
 		tueF = new JTextField();
 		tueF.setSize(30,30);
-		tueF.setLocation(400,0);
+		tueF.setLocation(330,0);
 		tueF.setEditable(false);
 		add(tueF);
-		textField7 = new JTextField();
-		textField7.setSize(130,30);
-		textField7.setLocation(300,35);
-		textField7.setEditable(false);
-		add(textField7);
-		textField8 = new JTextField();
-		textField8.setSize(130,30);
-		textField8.setLocation(300,65);
-		textField8.setEditable(false);
-		add(textField8);
+		tueB = new JButton("Tuesday");
+		tueB.setSize(100,70);
+		tueB.setLocation(260,30);
+		add(tueB);
 		
 		
-		wed = new JLabel("Wednesday");
-		wed.setSize(100,30);
-		wed.setLocation(450,0);
-		add(wed);
 		wedF = new JTextField();
 		wedF.setSize(30,30);
-		wedF.setLocation(550,0);
+		wedF.setLocation(465,0);
 		wedF.setEditable(false);
 		add(wedF);
-		textField9 = new JTextField();
-		textField9.setSize(130,30);
-		textField9.setLocation(450,35);
-		textField9.setEditable(false);
-		add(textField9);
-		textField10 = new JTextField();
-		textField10.setSize(130,30);
-		textField10.setLocation(450,65);
-		textField10.setEditable(false);
-		add(textField10);
+		wedB = new JButton("Wednesday");
+		wedB.setSize(105,70);
+		wedB.setLocation(390,30);
+		add(wedB);
 		
 		
-		thu = new JLabel("Thursday");
-		thu.setSize(100,30);
-		thu.setLocation(600,0);
-		add(thu);
 		thuF = new JTextField();
 		thuF.setSize(30,30);
-		thuF.setLocation(700,0);
+		thuF.setLocation(590,0);
 		thuF.setEditable(false);
 		add(thuF);
-		textField11 = new JTextField();
-		textField11.setSize(130,30);
-		textField11.setLocation(600,35);
-		textField11.setEditable(false);
-		add(textField11);
-		textField12 = new JTextField();
-		textField12.setSize(130,30);
-		textField12.setLocation(600,65);
-		textField12.setEditable(false);
-		add(textField12);
+		thuB = new JButton("Thursday");
+		thuB.setSize(100,70);
+		thuB.setLocation(520,30);
+		add(thuB);
 		
 		
-		fri = new JLabel("Friday");
-		fri.setSize(100,30);
-		fri.setLocation(750,0);
-		add(fri);
 		friF = new JTextField();
 		friF.setSize(30,30);
-		friF.setLocation(850,0);
+		friF.setLocation(720,0);
 		friF.setEditable(false);
 		add(friF);
-		textField12 = new JTextField();
-		textField12.setSize(130,30);
-		textField12.setLocation(750,35);
-		textField12.setEditable(false);
-		add(textField12);
-		textField13 = new JTextField();
-		textField13.setSize(130,30);
-		textField13.setLocation(750,65);
-		textField13.setEditable(false);
-		add(textField13);
+		friB = new JButton("Friday");
+		friB.setSize(100,70);
+		friB.setLocation(650,30);
+		add(friB);
 		
 		
-		sat = new JLabel("Saturday");
-		sat.setSize(100,30);
-		sat.setLocation(900,0);
-		add(sat);
 		satF = new JTextField();
 		satF.setSize(30,30);
-		satF.setLocation(950,0);
+		satF.setLocation(850,0);
 		satF.setEditable(false);
 		add(satF);
-		textField14 = new JTextField();
-		textField14.setSize(130,30);
-		textField14.setLocation(900,35);
-		textField14.setEditable(false);
-		add(textField14);
-		textField15 = new JTextField();
-		textField15.setSize(130,30);
-		textField15.setLocation(900,65);
-		textField15.setEditable(false);
-		add(textField15);
+		satB = new JButton("Saturday");
+		satB.setSize(100,70);
+		satB.setLocation(780,30);
+		add(satB);
 		
+		
+		sep = new JSeparator();
+		sep.setOrientation(SwingConstants.HORIZONTAL);
+		sep.setSize(900,30);
+		sep.setLocation(0,150);
+		add(sep);
+		
+		sep2 = new JSeparator();
+		sep2.setOrientation(SwingConstants.HORIZONTAL);
+		sep2.setSize(900,30);
+		sep2.setLocation(0,120);
+		add(sep2);
+		
+		sep3 = new JSeparator();
+		sep3.setOrientation(SwingConstants.VERTICAL);
+		sep3.setSize(50,550);
+		sep3.setLocation(295,120);
+		add(sep3);
+		
+		sep4 = new JSeparator();
+		sep4.setOrientation(SwingConstants.VERTICAL);
+		sep4.setSize(50,550);
+		sep4.setLocation(555,120);
+		add(sep4);
+		
+		sep5 = new JSeparator();
+		sep5.setOrientation(SwingConstants.VERTICAL);
+		sep5.setSize(30,100);
+		sep5.setLocation(115,10);
+		add(sep5);
+		
+		sep6 = new JSeparator();
+		sep6.setOrientation(SwingConstants.VERTICAL);
+		sep6.setSize(30,100);
+		sep6.setLocation(245,10);
+		add(sep6);
+		
+		sep7 = new JSeparator();
+		sep7.setOrientation(SwingConstants.VERTICAL);
+		sep7.setSize(30,100);
+		sep7.setLocation(375,10);
+		add(sep7);
+		
+		sep8 = new JSeparator();
+		sep8.setOrientation(SwingConstants.VERTICAL);
+		sep8.setSize(30,100);
+		sep8.setLocation(505,10);
+		add(sep8);
+		
+		sep9 = new JSeparator();
+		sep9.setOrientation(SwingConstants.VERTICAL);
+		sep9.setSize(30,100);
+		sep9.setLocation(635,10);
+		add(sep9);
+		
+		sep10 = new JSeparator();
+		sep10.setOrientation(SwingConstants.VERTICAL);
+		sep10.setSize(30,100);
+		sep10.setLocation(765,10);
+		add(sep10);
 		
 		////////////////////////////////////
 		//Task table starts here
@@ -295,10 +286,10 @@ public class StudentCalendar extends JFrame{
 		label1.setLocation(150, 30);
 		event.add(label1);
 
-		textField16 = new JTextField("1,2 or 3");
-		textField16.setSize(50,30);
-		textField16.setLocation(200,30);
-		event.add(textField16);
+		textField3 = new JTextField("1,2 or 3");
+		textField3.setSize(50,30);
+		textField3.setLocation(200,30);
+		event.add(textField3);
 		
 		/////////////
 		//Location
@@ -308,10 +299,10 @@ public class StudentCalendar extends JFrame{
 		label7.setLocation(0, 60);
 		event.add(label7);
 		
-		textField17 = new JTextField();
-		textField17.setSize(190, 30);
-		textField17.setLocation(60, 60);
-		event.add(textField17);
+		textField4 = new JTextField();
+		textField4.setSize(190, 30);
+		textField4.setLocation(60, 60);
+		event.add(textField4);
 		
 		/////////////
 		//Time
@@ -321,10 +312,10 @@ public class StudentCalendar extends JFrame{
 		label8.setLocation(0, 90);
 		event.add(label8);
 		
-		textField18 = new JTextField("HH:MM");
-		textField18.setSize(70,30);
-		textField18.setLocation(60, 90);
-		event.add(textField18);
+		textField5 = new JTextField("HH:MM");
+		textField5.setSize(70,30);
+		textField5.setLocation(60, 90);
+		event.add(textField5);
 		
 		/////////////
 		//Description
@@ -515,6 +506,7 @@ public class StudentCalendar extends JFrame{
 		button1.setLocation(750, 600);
 		//button1.addActionListener(new Button1Clicked());
 		add(button1);
+		
 		
 		setVisible(true);
 	}
