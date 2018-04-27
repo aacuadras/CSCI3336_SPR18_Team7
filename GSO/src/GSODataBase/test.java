@@ -21,6 +21,16 @@ public class test
 
 		testing.typeEvent(00006, 3, "Supplies", "Run to the store to get school supplies", 3, "2018-04-22", null, null, null, 0);
 
+		String[][] data = testing.getDataByDate("2018-04-22");
+		for (int i = 0; i < data.length; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				System.out.print(data[i][j]);
+			}
+			System.out.println();
+		}
+
 
 		testing.testPrint();
 

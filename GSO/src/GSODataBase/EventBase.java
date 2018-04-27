@@ -104,6 +104,63 @@ public class EventBase {
 	}
 	/////////////////////////////////////////////////////////////
 
+
+    /////////////////////////////////////////////////////////////
+    //Returns the String
+    public String[][] getDataByDate(String date) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection connection = DriverManager.getConnection("jdbc:mysql://35.225.154.164:3306/GSO?autoReconnect=true&useSSL=false","root", "12345");
+        Statement statement = connection.createStatement();
+        String sort = "select * from Event_Note where theDate = '" + date + "' order by Priority, NoteType";
+        ResultSet rs = statement.executeQuery(sort);
+
+        rs.last();
+        int numRows = rs.getRow();
+        rs.beforeFirst();
+
+        String[][] sorted = new String[numRows][8];
+
+        for (int i = 0; rs.next(); i++)
+        {
+            if (rs.getInt("NoteType") == 1)
+            {
+                sorted[i][0] = rs.getString("ID");
+                sorted[i][1] = rs.getString("NoteType");
+                sorted[i][2] = rs.getString("EventName");
+                sorted[i][3] = rs.getString("EventDesc");
+                sorted[i][4] = rs.getString("Priority");
+                sorted[i][5] = rs.getString("theDate");
+                sorted[i][6] = rs.getString("Location");
+                sorted[i][7] = rs.getString("Duration");
+            }
+            else if (rs.getInt("NoteType") == 2)
+            {
+                sorted[i][0] = rs.getString("ID");
+                sorted[i][1] = rs.getString("NoteType");
+                sorted[i][2] = rs.getString("EventName");
+                sorted[i][3] = rs.getString("EventDesc");
+                sorted[i][4] = rs.getString("Priority");
+                sorted[i][5] = rs.getString("theDate");
+                sorted[i][6] = rs.getString("Deadline");
+                sorted[i][7] = rs.getString("Complete");
+            }
+            else
+            {
+                sorted[i][0] = rs.getString("ID");
+                sorted[i][1] = rs.getString("NoteType");
+                sorted[i][2] = rs.getString("EventName");
+                sorted[i][3] = rs.getString("EventDesc");
+                sorted[i][4] = rs.getString("Priority");
+                sorted[i][5] = rs.getString("theDate");
+                sorted[i][6] = " ";
+                sorted[i][7] = " ";
+            }
+        }
+
+        return sorted;
+    }
+
 	//Helper: Uses the given type to pass the info the according function
 	public void typeEvent(int id, int type, String name, String desc, int priority, String date, String location, String duration, String deadline, int complete) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		
