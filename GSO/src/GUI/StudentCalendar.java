@@ -717,9 +717,9 @@ public class StudentCalendar extends JFrame{
 	    test.add(delB);		
 	}
 
-	/////////////////////////
+	//////////////////////////
 	//If reminder is selected
-	/////////////////////////	
+	//////////////////////////	
 	private void addRmPan()
 	{
 		test = new JPanel();
