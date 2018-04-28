@@ -12,23 +12,27 @@ public class StudentCalendar extends JFrame{
 	private JTextField sunF, monF, tueF, wedF, thuF, friF, satF;	//Text fields for the day of the month number
 	private JTextField hwTF1, hwTF2, hwTF3, hwTF4;		//Text fields for "homework" tab
 	private JTextField rmTF1, rmTF2, rmTF3;		//Text fields for "reminder" tab
+	private JTextField evDTF1, evDTF2, evDTF3, evDTF4, evDTF5;		//Text fields for the display of "event", "homework" or "reminder"
 	private JLabel label1, label2, label3, label4, label5, label6, label7, label8, label9;		//Labels for "event" tab
+	private JLabel evDL1, evDL2, evDL3, evDL4, evDL5, evDL6, evDL7;		//Labels for the display of "event", "homework" or "reminder"
 	private JLabel hwL1, hwL2, hwL3, hwL4, hwL5, hwL6;		//Labels for "homework" tab
 	private JLabel rmL1, rmL2, rmL3, rmL4;		//Labels for "reminder" tab
 	private JScrollPane scroll1;		//Scroll for button table
 	private JRadioButton yeah, nah;		//Radio buttons in "homework" tab
 	private JPanel buttonPanel;			//Button panel for radio buttons
 	private GridBagConstraints constraint;		//Constraints for button table
-	private JButton button1, sunB, monB, tueB, wedB, thuB, friB, satB;	//"Add task" button and buttons for the days of the week
+	private JButton button1, sunB, monB, tueB, wedB, thuB, friB, satB, delB, comB;	//"Add task" button, buttons for the days of the week and button to delete task
 	private JTabbedPane tabbedPane;		//Tabs variable
 	private JPanel event, homework, reminder;		//Panels necessary for tabs
+	private JPanel test;
 	private JSeparator sep, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10;	//Lines
+	private boolean ev = false, hw = false, rm = false;		//Temporal variables to display middle panels
 	
 	
 	public StudentCalendar()
 	{
 		//Setting size for the window
-		super("Student Calendar");
+		super("GSO");
 		setSize(895,680);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
@@ -238,14 +242,15 @@ public class StudentCalendar extends JFrame{
 		label5.setSize(100,30);
 		label5.setLocation(300, 120);
 		add(label5);
-		textArea2 = new JTextArea();
-		textArea2.setLineWrap(true);
-	    textArea2.setWrapStyleWord(true);
-	    textArea2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		textArea2.setLocation(300, 180);
-		textArea2.setSize(250, 405);
-		add(textArea2);
 		
+		/////////////////////////////////////
+		if(ev)
+			addEvPan();
+		if(hw)
+			addHwPan();
+		if(rm)
+			addRmPan();
+		/////////////////////////////////////	
 		
 		///////////
 		//Task Name
@@ -524,4 +529,259 @@ public class StudentCalendar extends JFrame{
 		setVisible(true);
 	}
 	
+	
+	//////////////////////
+	//If event is selected
+	//////////////////////
+	private void addEvPan()
+	{
+		test = new JPanel();
+		test.setSize(250,495);
+		test.setLocation(300,150);
+		test.setLayout(null);
+		add(test);
+		
+		
+		evDL1 = new JLabel("Event");
+		evDL1.setSize(100,30);
+		test.add(evDL1);
+		
+		//Name
+		evDL2 = new JLabel("Name: ");
+		evDL2.setSize(100,30);
+		evDL2.setLocation(0,30);
+		test.add(evDL2);
+		evDTF1 = new JTextField();
+		evDTF1.setSize(200,30);
+		evDTF1.setLocation(40,30);
+		evDTF1.setEditable(false);
+		test.add(evDTF1);
+		
+		//Date
+		evDL3 = new JLabel("Date:");
+		evDL3.setSize(100,30);
+		evDL3.setLocation(0,60);
+		test.add(evDL3);
+		evDTF2 = new JTextField();
+		evDTF2.setSize(90,30);
+		evDTF2.setLocation(40,60);
+		evDTF2.setEditable(false);
+		test.add(evDTF2);
+		
+		//Priority
+		evDL4 = new JLabel("Priority: ");
+		evDL4.setSize(100,30);
+		evDL4.setLocation(140,60);
+		test.add(evDL4);
+		evDTF3 = new JTextField();
+		evDTF3.setSize(50,30);
+		evDTF3.setLocation(190,60);
+		evDTF3.setEditable(false);
+		test.add(evDTF3);
+		
+		//Location
+		evDL5 = new JLabel("Location: ");
+		evDL5.setSize(100,30);
+		evDL5.setLocation(0,90);
+		test.add(evDL5);
+		evDTF4 = new JTextField();
+		evDTF4.setSize(180,30);
+		evDTF4.setLocation(60,90);
+		evDTF4.setEditable(false);
+		test.add(evDTF4);
+		
+		//Time
+		evDL6 = new JLabel("Time:");
+		evDL6.setSize(100,30);
+		evDL6.setLocation(0,120);
+		test.add(evDL6);
+		evDTF5 = new JTextField();
+		evDTF5.setSize(80,30);
+		evDTF5.setLocation(40,120);
+		evDTF5.setEditable(false);
+		test.add(evDTF5);
+		
+		//Description
+		evDL7 = new JLabel("Description:");
+		evDL7.setSize(100,30);
+		evDL7.setLocation(0,150);
+		test.add(evDL7);
+		textArea2 = new JTextArea();
+		textArea2.setSize(270,255);
+		textArea2.setLocation(0,180);
+		textArea2.setEditable(false);
+		textArea2.setLineWrap(true);
+	    textArea2.setWrapStyleWord(true);
+	    textArea2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+	    test.add(textArea2);
+	    
+	    delB = new JButton("Delete Task");
+	    delB.setSize(120,30);
+	    delB.setLocation(70,450);
+	    test.add(delB);
+	}
+	
+	/////////////////////////
+	//If homework is selected
+	/////////////////////////
+	private void addHwPan()
+	{
+		test = new JPanel();
+		test.setSize(250,495);
+		test.setLocation(300,150);
+		test.setLayout(null);
+		add(test);
+		
+		evDL1 = new JLabel("Homework");
+		evDL1.setSize(100,30);
+		test.add(evDL1);		
+		
+		//Name
+		evDL2 = new JLabel("Name: ");
+		evDL2.setSize(100,30);
+		evDL2.setLocation(0,30);
+		test.add(evDL2);
+		evDTF1 = new JTextField();
+		evDTF1.setSize(200,30);
+		evDTF1.setLocation(40,30);
+		evDTF1.setEditable(false);
+		test.add(evDTF1);
+				
+		//Date
+		evDL3 = new JLabel("Date:");
+		evDL3.setSize(100,30);
+		evDL3.setLocation(0,60);
+		test.add(evDL3);
+		evDTF2 = new JTextField();
+		evDTF2.setSize(90,30);
+		evDTF2.setLocation(40,60);
+		evDTF2.setEditable(false);
+		test.add(evDTF2);
+				
+		//Priority
+		evDL4 = new JLabel("Priority: ");
+		evDL4.setSize(100,30);
+		evDL4.setLocation(140,60);
+		test.add(evDL4);
+		evDTF3 = new JTextField();
+		evDTF3.setSize(50,30);
+		evDTF3.setLocation(190,60);
+		evDTF3.setEditable(false);
+		test.add(evDTF3);
+		
+		//Deadline
+		evDL5 = new JLabel("Deadline: ");
+		evDL5.setSize(100,30);
+		evDL5.setLocation(0,90);
+		test.add(evDL5);
+		evDTF4 = new JTextField();
+		evDTF4.setSize(90,30);
+		evDTF4.setLocation(60,90);
+		evDTF4.setEditable(false);
+		test.add(evDTF4);
+		
+		//Complete
+		evDL6 = new JLabel("Complete:");
+		evDL6.setSize(100,30);
+		evDL6.setLocation(0,120);
+		test.add(evDL6);
+		evDTF5 = new JTextField("N");
+		evDTF5.setSize(30,30);
+		evDTF5.setLocation(60,120);
+		evDTF5.setEditable(false);
+		test.add(evDTF5);
+		comB = new JButton("Complete");
+		comB.setSize(100,30);
+		comB.setLocation(140,120);
+		
+		if(evDTF5.getText().equals("N"))
+			test.add(comB);
+		
+		//Description
+		evDL7 = new JLabel("Description:");
+		evDL7.setSize(100,30);
+		evDL7.setLocation(0,150);
+		test.add(evDL7);
+		textArea2 = new JTextArea();
+		textArea2.setSize(270,255);
+		textArea2.setLocation(0,180);
+		textArea2.setEditable(false);
+		textArea2.setLineWrap(true);
+	    textArea2.setWrapStyleWord(true);
+	    textArea2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+	    test.add(textArea2);
+			    
+		delB = new JButton("Delete Task");
+	    delB.setSize(120,30);
+	    delB.setLocation(70,450);
+	    test.add(delB);		
+	}
+
+	/////////////////////////
+	//If reminder is selected
+	/////////////////////////	
+	private void addRmPan()
+	{
+		test = new JPanel();
+		test.setSize(250,495);
+		test.setLocation(300,150);
+		test.setLayout(null);
+		add(test);
+		
+		evDL1 = new JLabel("Reminder");
+		evDL1.setSize(100,30);
+		test.add(evDL1);		
+		
+		//Name
+		evDL2 = new JLabel("Name: ");
+		evDL2.setSize(100,30);
+		evDL2.setLocation(0,30);
+		test.add(evDL2);
+		evDTF1 = new JTextField();
+		evDTF1.setSize(200,30);
+		evDTF1.setLocation(40,30);
+		evDTF1.setEditable(false);
+		test.add(evDTF1);
+				
+		//Date
+		evDL3 = new JLabel("Date:");
+		evDL3.setSize(100,30);
+		evDL3.setLocation(0,60);
+		test.add(evDL3);
+		evDTF2 = new JTextField();
+		evDTF2.setSize(90,30);
+		evDTF2.setLocation(40,60);
+		evDTF2.setEditable(false);
+		test.add(evDTF2);
+		
+		//Priority
+		evDL4 = new JLabel("Priority: ");
+		evDL4.setSize(100,30);
+		evDL4.setLocation(140,60);
+		test.add(evDL4);
+		evDTF3 = new JTextField();
+		evDTF3.setSize(50,30);
+		evDTF3.setLocation(190,60);
+		evDTF3.setEditable(false);
+		test.add(evDTF3);
+		
+		//Description
+		evDL7 = new JLabel("Description:");
+		evDL7.setSize(100,30);
+		evDL7.setLocation(0,90);
+		test.add(evDL7);
+		textArea2 = new JTextArea();
+		textArea2.setSize(270,255);
+		textArea2.setLocation(0,120);
+		textArea2.setEditable(false);
+		textArea2.setLineWrap(true);
+	    textArea2.setWrapStyleWord(true);
+		textArea2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+	    test.add(textArea2);
+					    
+		delB = new JButton("Delete Task");
+	    delB.setSize(120,30);
+	    delB.setLocation(70,450);
+	    test.add(delB);	
+	}
 }
