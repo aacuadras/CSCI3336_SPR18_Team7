@@ -1,8 +1,12 @@
+package GUI;
 import java.sql.*;
 
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class StudentCalendar extends JFrame{
@@ -24,11 +28,14 @@ public class StudentCalendar extends JFrame{
 	private JButton button1, sunB, monB, tueB, wedB, thuB, friB, satB, delB, comB;	//"Add task" button, buttons for the days of the week and button to delete task
 	private JTabbedPane tabbedPane;		//Tabs variable
 	private JPanel event, homework, reminder;		//Panels necessary for tabs
-	private JPanel test;
+	private JPanel test = new JPanel();
 	private JSeparator sep, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10;	//Lines
 	private boolean ev = false, hw = false, rm = false;		//Temporal variables to display middle panels
 	EventBase base = new EventBase();
 	
+	private JButton buttons[] = new JButton[30];
+	String[][] data = new String[30][8];
+	String currentDate = "04-29-2018";
 	
 	public StudentCalendar() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
@@ -46,88 +53,95 @@ public class StudentCalendar extends JFrame{
 		////////////Days
 		
 		//Sunday
-		sunF = new JTextField();
-		sunF.setSize(30,30);
-		sunF.setLocation(70,0);
-		sunF.setEditable(false);
-		add(sunF);
-		//Pressing this button changes the table to the tasks for sunday
-		sunB = new JButton("Sunday");
-		sunB.setSize(100,70);
-		sunB.setLocation(0,30);
-		add(sunB);
-		
-		//Monday
-		monF = new JTextField();
-		monF.setSize(30,30);
-		monF.setLocation(200,0);
-		monF.setEditable(false);
-		add(monF);
-		//Pressing this button changes the table to the tasks for monday
-		monB = new JButton("Monday");
-		monB.setSize(100,70);
-		monB.setLocation(130,30);
-		add(monB);
-		
-		//Tuesday
-		tueF = new JTextField();
-		tueF.setSize(30,30);
-		tueF.setLocation(330,0);
-		tueF.setEditable(false);
-		add(tueF);
-		//Pressing this button changes the table to the tasks for tuesday
-		tueB = new JButton("Tuesday");
-		tueB.setSize(100,70);
-		tueB.setLocation(260,30);
-		add(tueB);
-		
-		//Wednesday
-		wedF = new JTextField();
-		wedF.setSize(30,30);
-		wedF.setLocation(465,0);
-		wedF.setEditable(false);
-		add(wedF);
-		//Pressing this button changes the table to the tasks for wednesday
-		wedB = new JButton("Wednesday");
-		wedB.setSize(105,70);
-		wedB.setLocation(390,30);
-		add(wedB);
-		
-		//Thursday
-		thuF = new JTextField();
-		thuF.setSize(30,30);
-		thuF.setLocation(590,0);
-		thuF.setEditable(false);
-		add(thuF);
-		//Pressing this button changes the table to the tasks for thursday
-		thuB = new JButton("Thursday");
-		thuB.setSize(100,70);
-		thuB.setLocation(520,30);
-		add(thuB);
-		
-		//Friday
-		friF = new JTextField();
-		friF.setSize(30,30);
-		friF.setLocation(720,0);
-		friF.setEditable(false);
-		add(friF);
-		//Pressing this button changes the table to the tasks for friday
-		friB = new JButton("Friday");
-		friB.setSize(100,70);
-		friB.setLocation(650,30);
-		add(friB);
-		
-		//Saturday
-		satF = new JTextField();
-		satF.setSize(30,30);
-		satF.setLocation(850,0);
-		satF.setEditable(false);
-		add(satF);
-		//Pressing this button changes the table to the tasks for saturday
-		satB = new JButton("Saturday");
-		satB.setSize(100,70);
-		satB.setLocation(780,30);
-		add(satB);
+				sunF = new JTextField();
+				sunF.setSize(30,30);
+				sunF.setLocation(70,0);
+				sunF.setEditable(false);
+				add(sunF);
+				//Pressing this button changes the table to the tasks for sunday
+				sunB = new JButton("Sunday");
+				sunB.setSize(100,70);
+				sunB.setLocation(0,30);
+				sunB.addActionListener(new getDay("04-29-2018"));
+				add(sunB);
+				
+				//Monday
+				monF = new JTextField();
+				monF.setSize(30,30);
+				monF.setLocation(200,0);
+				monF.setEditable(false);
+				add(monF);
+				//Pressing this button changes the table to the tasks for monday
+				monB = new JButton("Monday");
+				monB.setSize(100,70);
+				monB.setLocation(130,30);
+				monB.addActionListener(new getDay("04-30-2018"));
+				add(monB);
+				
+				//Tuesday
+				tueF = new JTextField();
+				tueF.setSize(30,30);
+				tueF.setLocation(330,0);
+				tueF.setEditable(false);
+				add(tueF);
+				//Pressing this button changes the table to the tasks for tuesday
+				tueB = new JButton("Tuesday");
+				tueB.setSize(100,70);
+				tueB.setLocation(260,30);
+				tueB.addActionListener(new getDay("05-01-2018"));
+				add(tueB);
+				
+				//Wednesday
+				wedF = new JTextField();
+				wedF.setSize(30,30);
+				wedF.setLocation(465,0);
+				wedF.setEditable(false);
+				add(wedF);
+				//Pressing this button changes the table to the tasks for wednesday
+				wedB = new JButton("Wednesday");
+				wedB.setSize(105,70);
+				wedB.setLocation(390,30);
+				wedB.addActionListener(new getDay("05-02-2018"));
+				add(wedB);
+				
+				//Thursday
+				thuF = new JTextField();
+				thuF.setSize(30,30);
+				thuF.setLocation(590,0);
+				thuF.setEditable(false);
+				add(thuF);
+				//Pressing this button changes the table to the tasks for thursday
+				thuB = new JButton("Thursday");
+				thuB.setSize(100,70);
+				thuB.setLocation(520,30);
+				thuB.addActionListener(new getDay("05-03-2018"));
+				add(thuB);
+				
+				//Friday
+				friF = new JTextField();
+				friF.setSize(30,30);
+				friF.setLocation(720,0);
+				friF.setEditable(false);
+				add(friF);
+				//Pressing this button changes the table to the tasks for friday
+				friB = new JButton("Friday");
+				friB.setSize(100,70);
+				friB.setLocation(650,30);
+				friB.addActionListener(new getDay("05-04-2018"));
+				add(friB);
+				
+				//Saturday
+				satF = new JTextField();
+				satF.setSize(30,30);
+				satF.setLocation(850,0);
+				satF.setEditable(false);
+				add(satF);
+				//Pressing this button changes the table to the tasks for saturday
+				satB = new JButton("Saturday");
+				satB.setSize(100,70);
+				satB.setLocation(780,30);
+				satB.addActionListener(new getDay("05-05-2018"));
+				add(satB);
 		
 		
 		//////////Separators for "Tasks", "Task Description", "Add Task"
@@ -221,21 +235,50 @@ public class StudentCalendar extends JFrame{
 	    constraint.weightx = 1.0f;
 	    constraint.weighty = 1.0f;
 
-	    //Depends on events
-	    int sizeOfButtons = 15;
-	    for(int i = 0; i < sizeOfButtons; i++) {
-	        JButton button = new JButton();
-
-	        //Will set to task name
-	        button.setText("Button #" + (i+1));
-
-	        button.setHorizontalAlignment(SwingConstants.LEFT);
-	        buttonPanel.add(button, constraint);
+	    
+	    
+	    ////////////////////////////////////////////////////////////
+	    //Dynamically adds buttons
+	    data = base.getDataByDate(currentDate);
+	    
+	    for(int i = 0; i < data.length; i++)
+	    {
+	    	buttons[i] = new JButton();
+	        
+	        buttons[i].setText(data[i][2]);
+	        
+	        buttons[i].setHorizontalAlignment(SwingConstants.LEFT);
+	        
+	        if(data[i][1].equals("1"))
+	        {
+	        	buttons[i].addActionListener(new displayEventButton(i));
+	        	
+	        }
+	        else if(data[i][1].equals("2"))
+	        {
+	        	buttons[i].addActionListener(new displayHomeworkButton(i));
+	        }
+	        else 
+	        {
+	        	buttons[i].addActionListener(new displayReminderButton(i));
+	        }
+	        
+	        buttons[i].validate();
+     		buttons[i].repaint();
+     		
+	        buttonPanel.add(buttons[i], constraint);
+	        
+	        buttonPanel.validate();
+			buttonPanel.repaint();
 	    }
 
 	    scroll1.setViewportView(buttonPanel);
 	    this.rootPane.add(scroll1);
 	    scroll1.updateUI();
+	   
+		scroll1.validate();
+		scroll1.repaint();
+		/////////////////////////////////////////////////////////////////////////
 		
 		
 		////////////Task Description Area
@@ -243,14 +286,7 @@ public class StudentCalendar extends JFrame{
 		label5.setSize(100,30);
 		label5.setLocation(300, 120);
 		add(label5);
-		
-		/////////////////////////////////////
-		if(ev)
-			addEvPan();
-		if(hw)
-			addHwPan();
-		if(rm)
-			addRmPan();
+
 		/////////////////////////////////////	
 		
 		///////////
@@ -528,15 +564,16 @@ public class StudentCalendar extends JFrame{
 		add(button1);
 		
 		setVisible(true);
+		
 	}
 	
 	
 	//////////////////////
 	//If event is selected
 	//////////////////////
-	private void addEvPan()
+	private void addEvPan(String name, String date, String pri, String location, String time, String desc)
 	{
-		test = new JPanel();
+		//test = new JPanel();
 		test.setSize(250,495);
 		test.setLocation(300,150);
 		test.setLayout(null);
@@ -552,7 +589,7 @@ public class StudentCalendar extends JFrame{
 		evDL2.setSize(100,30);
 		evDL2.setLocation(0,30);
 		test.add(evDL2);
-		evDTF1 = new JTextField();
+		evDTF1 = new JTextField(name);
 		evDTF1.setSize(200,30);
 		evDTF1.setLocation(40,30);
 		evDTF1.setEditable(false);
@@ -563,7 +600,7 @@ public class StudentCalendar extends JFrame{
 		evDL3.setSize(100,30);
 		evDL3.setLocation(0,60);
 		test.add(evDL3);
-		evDTF2 = new JTextField();
+		evDTF2 = new JTextField(date);
 		evDTF2.setSize(90,30);
 		evDTF2.setLocation(40,60);
 		evDTF2.setEditable(false);
@@ -574,7 +611,7 @@ public class StudentCalendar extends JFrame{
 		evDL4.setSize(100,30);
 		evDL4.setLocation(140,60);
 		test.add(evDL4);
-		evDTF3 = new JTextField();
+		evDTF3 = new JTextField(pri);
 		evDTF3.setSize(50,30);
 		evDTF3.setLocation(190,60);
 		evDTF3.setEditable(false);
@@ -585,7 +622,7 @@ public class StudentCalendar extends JFrame{
 		evDL5.setSize(100,30);
 		evDL5.setLocation(0,90);
 		test.add(evDL5);
-		evDTF4 = new JTextField();
+		evDTF4 = new JTextField(location);
 		evDTF4.setSize(180,30);
 		evDTF4.setLocation(60,90);
 		evDTF4.setEditable(false);
@@ -596,7 +633,7 @@ public class StudentCalendar extends JFrame{
 		evDL6.setSize(100,30);
 		evDL6.setLocation(0,120);
 		test.add(evDL6);
-		evDTF5 = new JTextField();
+		evDTF5 = new JTextField(time);
 		evDTF5.setSize(80,30);
 		evDTF5.setLocation(40,120);
 		evDTF5.setEditable(false);
@@ -607,7 +644,7 @@ public class StudentCalendar extends JFrame{
 		evDL7.setSize(100,30);
 		evDL7.setLocation(0,150);
 		test.add(evDL7);
-		textArea2 = new JTextArea();
+		textArea2 = new JTextArea(desc);
 		textArea2.setSize(270,255);
 		textArea2.setLocation(0,180);
 		textArea2.setEditable(false);
@@ -620,14 +657,18 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);
+	    
+	    test.validate();
+		test.repaint();
+	    
 	}
 	
 	/////////////////////////
 	//If homework is selected
 	/////////////////////////
-	private void addHwPan()
+	private void addHwPan(String name, String date, String pri, String deadline, String complete, String desc)
 	{
-		test = new JPanel();
+		
 		test.setSize(250,495);
 		test.setLocation(300,150);
 		test.setLayout(null);
@@ -642,7 +683,7 @@ public class StudentCalendar extends JFrame{
 		evDL2.setSize(100,30);
 		evDL2.setLocation(0,30);
 		test.add(evDL2);
-		evDTF1 = new JTextField();
+		evDTF1 = new JTextField(name);
 		evDTF1.setSize(200,30);
 		evDTF1.setLocation(40,30);
 		evDTF1.setEditable(false);
@@ -653,7 +694,7 @@ public class StudentCalendar extends JFrame{
 		evDL3.setSize(100,30);
 		evDL3.setLocation(0,60);
 		test.add(evDL3);
-		evDTF2 = new JTextField();
+		evDTF2 = new JTextField(date);
 		evDTF2.setSize(90,30);
 		evDTF2.setLocation(40,60);
 		evDTF2.setEditable(false);
@@ -664,7 +705,7 @@ public class StudentCalendar extends JFrame{
 		evDL4.setSize(100,30);
 		evDL4.setLocation(140,60);
 		test.add(evDL4);
-		evDTF3 = new JTextField();
+		evDTF3 = new JTextField(pri);
 		evDTF3.setSize(50,30);
 		evDTF3.setLocation(190,60);
 		evDTF3.setEditable(false);
@@ -675,7 +716,7 @@ public class StudentCalendar extends JFrame{
 		evDL5.setSize(100,30);
 		evDL5.setLocation(0,90);
 		test.add(evDL5);
-		evDTF4 = new JTextField();
+		evDTF4 = new JTextField(deadline);
 		evDTF4.setSize(90,30);
 		evDTF4.setLocation(60,90);
 		evDTF4.setEditable(false);
@@ -686,7 +727,7 @@ public class StudentCalendar extends JFrame{
 		evDL6.setSize(100,30);
 		evDL6.setLocation(0,120);
 		test.add(evDL6);
-		evDTF5 = new JTextField("N");
+		evDTF5 = new JTextField(complete);
 		evDTF5.setSize(30,30);
 		evDTF5.setLocation(60,120);
 		evDTF5.setEditable(false);
@@ -695,7 +736,7 @@ public class StudentCalendar extends JFrame{
 		comB.setSize(100,30);
 		comB.setLocation(140,120);
 		
-		if(evDTF5.getText().equals("N"))
+		if(evDTF5.getText().equals("No"))
 			test.add(comB);
 		
 		//Description
@@ -716,14 +757,16 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);		
+		
+	    test.validate();
+	    test.repaint();
 	}
 
 	//////////////////////////
 	//If reminder is selected
 	//////////////////////////	
-	private void addRmPan()
+	private void addRmPan(String name, String date, String pri, String desc)
 	{
-		test = new JPanel();
 		test.setSize(250,495);
 		test.setLocation(300,150);
 		test.setLayout(null);
@@ -738,7 +781,7 @@ public class StudentCalendar extends JFrame{
 		evDL2.setSize(100,30);
 		evDL2.setLocation(0,30);
 		test.add(evDL2);
-		evDTF1 = new JTextField();
+		evDTF1 = new JTextField(name);
 		evDTF1.setSize(200,30);
 		evDTF1.setLocation(40,30);
 		evDTF1.setEditable(false);
@@ -749,7 +792,7 @@ public class StudentCalendar extends JFrame{
 		evDL3.setSize(100,30);
 		evDL3.setLocation(0,60);
 		test.add(evDL3);
-		evDTF2 = new JTextField();
+		evDTF2 = new JTextField(date);
 		evDTF2.setSize(90,30);
 		evDTF2.setLocation(40,60);
 		evDTF2.setEditable(false);
@@ -760,7 +803,7 @@ public class StudentCalendar extends JFrame{
 		evDL4.setSize(100,30);
 		evDL4.setLocation(140,60);
 		test.add(evDL4);
-		evDTF3 = new JTextField();
+		evDTF3 = new JTextField(pri);
 		evDTF3.setSize(50,30);
 		evDTF3.setLocation(190,60);
 		evDTF3.setEditable(false);
@@ -771,7 +814,7 @@ public class StudentCalendar extends JFrame{
 		evDL7.setSize(100,30);
 		evDL7.setLocation(0,90);
 		test.add(evDL7);
-		textArea2 = new JTextArea();
+		textArea2 = new JTextArea(desc);
 		textArea2.setSize(270,255);
 		textArea2.setLocation(0,120);
 		textArea2.setEditable(false);
@@ -784,7 +827,11 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);	
+
+	    test.validate();
+	    test.repaint();
 	}
+
 
 	private class addTaskButton implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
@@ -829,6 +876,71 @@ public class StudentCalendar extends JFrame{
 			 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	
+	
+	private class displayEventButton implements ActionListener 
+	{
+		private int i;
+
+		public displayEventButton(int i) {
+			this.i = i;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			test.removeAll();
+			test.validate();
+			test.repaint();
+			addEvPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3]);
+		}
+		
+	}
+	
+	private class displayHomeworkButton implements ActionListener 
+	{
+		private int i;
+
+		public displayHomeworkButton(int i) {
+			this.i = i;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			test.removeAll();
+			test.validate();
+			test.repaint();
+			addHwPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3]);
+		}
+		
+	}
+	
+	private class displayReminderButton implements ActionListener 
+	{
+		private int i;
+
+		public displayReminderButton(int i) {
+			this.i = i;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			test.removeAll();
+			test.validate();
+			test.repaint();
+			addRmPan(data[i][2], data[i][5], data[i][4], data[i][3]);
+		}
+		
+	}
+	
+	private class getDay implements ActionListener {
+		private String day;
+
+		public getDay(String day){
+			this.day = day;
+		}
+
+		public void actionPerformed(ActionEvent arg0) 
+		{
+			currentDate = day;
 		}
 	}
 

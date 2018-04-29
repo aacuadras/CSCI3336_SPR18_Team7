@@ -3,5 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="GSODataBase/" kind="src" path="GSO/src"/>
 	<classpathentry kind="src" path="GSO/src/GSODataBase"/>
+	<classpathentry kind="lib" path="C:/Program Files/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
