@@ -796,7 +796,7 @@ public class StudentCalendar extends JFrame{
 	    constraint.gridx = 0;
 	    constraint.gridy = GridBagConstraints.RELATIVE;
 	    constraint.weightx = 1.0f;
-	    constraint.weighty = 1.0f;
+	    constraint.weighty = 0;
 	    /////////////////////////////////////////////////////////////////////
 	    data = base.getDataByDate(date);
 	    
@@ -828,7 +828,8 @@ public class StudentCalendar extends JFrame{
 	
 	    scroll1.setViewportView(buttonPanel);
 	    scroll1.getParent();
-	    this.rootPane.add(scroll1);
+	    // this.rootPane.
+	    add(scroll1);
 	    scroll1.updateUI();
 	   
 		scroll1.validate();
@@ -952,6 +953,9 @@ public class StudentCalendar extends JFrame{
 				buttonPanel.validate();
 				buttonPanel.repaint();
 				setButtons(currentDate);
+				scroll1.updateUI();
+				scroll1.validate();
+				scroll1.repaint();
 
 				
 			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
