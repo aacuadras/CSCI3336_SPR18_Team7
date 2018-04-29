@@ -55,6 +55,7 @@ public class StudentCalendar extends JFrame{
 		sunB = new JButton("Sunday");
 		sunB.setSize(100,70);
 		sunB.setLocation(0,30);
+		SunB.addActionListener(new getDay("04-29-2018"));
 		add(sunB);
 		
 		//Monday
@@ -67,6 +68,7 @@ public class StudentCalendar extends JFrame{
 		monB = new JButton("Monday");
 		monB.setSize(100,70);
 		monB.setLocation(130,30);
+		monB.addActionListener(new getDay("04-30-2018"));
 		add(monB);
 		
 		//Tuesday
@@ -79,6 +81,7 @@ public class StudentCalendar extends JFrame{
 		tueB = new JButton("Tuesday");
 		tueB.setSize(100,70);
 		tueB.setLocation(260,30);
+		tueB.addActionListener(new getDay("05-01-2018"));
 		add(tueB);
 		
 		//Wednesday
@@ -91,6 +94,7 @@ public class StudentCalendar extends JFrame{
 		wedB = new JButton("Wednesday");
 		wedB.setSize(105,70);
 		wedB.setLocation(390,30);
+		wedB.addActionListener(new getDay("05-02-2018"));
 		add(wedB);
 		
 		//Thursday
@@ -103,6 +107,7 @@ public class StudentCalendar extends JFrame{
 		thuB = new JButton("Thursday");
 		thuB.setSize(100,70);
 		thuB.setLocation(520,30);
+		thuB.addActionListener(new getDay("05-03-2018"));
 		add(thuB);
 		
 		//Friday
@@ -115,6 +120,7 @@ public class StudentCalendar extends JFrame{
 		friB = new JButton("Friday");
 		friB.setSize(100,70);
 		friB.setLocation(650,30);
+		friB.addActionListener(new getDay("05-04-2018"));
 		add(friB);
 		
 		//Saturday
@@ -127,6 +133,7 @@ public class StudentCalendar extends JFrame{
 		satB = new JButton("Saturday");
 		satB.setSize(100,70);
 		satB.setLocation(780,30);
+		satB.addActionListener(new getDay("05-05-2018"));
 		add(satB);
 		
 		
@@ -849,5 +856,17 @@ public class StudentCalendar extends JFrame{
 			test.removeAll();
 			addEvPan(name, date, pri, location, time, desc);
 		}
+
+	private class getDay implements ActionListener {
+		private String day;
+
+		public getDay(String day){
+			this.day = day;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+
+		}
+	}
 
 }
