@@ -53,6 +53,7 @@ public class StudentCalendar extends JFrame{
 		////////////Days
 		
 		//Sunday
+<<<<<<< HEAD
 				sunF = new JTextField();
 				sunF.setSize(30,30);
 				sunF.setLocation(70,0);
@@ -142,6 +143,97 @@ public class StudentCalendar extends JFrame{
 				satB.setLocation(780,30);
 				satB.addActionListener(new getDay("05-05-2018"));
 				add(satB);
+=======
+		sunF = new JTextField();
+		sunF.setSize(30,30);
+		sunF.setLocation(70,0);
+		sunF.setEditable(false);
+		add(sunF);
+		//Pressing this button changes the table to the tasks for sunday
+		sunB = new JButton("Sunday");
+		sunB.setSize(100,70);
+		sunB.setLocation(0,30);
+		SunB.addActionListener(new getDay("04-29-2018"));
+		add(sunB);
+		
+		//Monday
+		monF = new JTextField();
+		monF.setSize(30,30);
+		monF.setLocation(200,0);
+		monF.setEditable(false);
+		add(monF);
+		//Pressing this button changes the table to the tasks for monday
+		monB = new JButton("Monday");
+		monB.setSize(100,70);
+		monB.setLocation(130,30);
+		monB.addActionListener(new getDay("04-30-2018"));
+		add(monB);
+		
+		//Tuesday
+		tueF = new JTextField();
+		tueF.setSize(30,30);
+		tueF.setLocation(330,0);
+		tueF.setEditable(false);
+		add(tueF);
+		//Pressing this button changes the table to the tasks for tuesday
+		tueB = new JButton("Tuesday");
+		tueB.setSize(100,70);
+		tueB.setLocation(260,30);
+		tueB.addActionListener(new getDay("05-01-2018"));
+		add(tueB);
+		
+		//Wednesday
+		wedF = new JTextField();
+		wedF.setSize(30,30);
+		wedF.setLocation(465,0);
+		wedF.setEditable(false);
+		add(wedF);
+		//Pressing this button changes the table to the tasks for wednesday
+		wedB = new JButton("Wednesday");
+		wedB.setSize(105,70);
+		wedB.setLocation(390,30);
+		wedB.addActionListener(new getDay("05-02-2018"));
+		add(wedB);
+		
+		//Thursday
+		thuF = new JTextField();
+		thuF.setSize(30,30);
+		thuF.setLocation(590,0);
+		thuF.setEditable(false);
+		add(thuF);
+		//Pressing this button changes the table to the tasks for thursday
+		thuB = new JButton("Thursday");
+		thuB.setSize(100,70);
+		thuB.setLocation(520,30);
+		thuB.addActionListener(new getDay("05-03-2018"));
+		add(thuB);
+		
+		//Friday
+		friF = new JTextField();
+		friF.setSize(30,30);
+		friF.setLocation(720,0);
+		friF.setEditable(false);
+		add(friF);
+		//Pressing this button changes the table to the tasks for friday
+		friB = new JButton("Friday");
+		friB.setSize(100,70);
+		friB.setLocation(650,30);
+		friB.addActionListener(new getDay("05-04-2018"));
+		add(friB);
+		
+		//Saturday
+		satF = new JTextField();
+		satF.setSize(30,30);
+		satF.setLocation(850,0);
+		satF.setEditable(false);
+		add(satF);
+		//Pressing this button changes the table to the tasks for saturday
+		satB = new JButton("Saturday");
+		satB.setSize(100,70);
+		satB.setLocation(780,30);
+		satB.addActionListener(new getDay("05-05-2018"));
+		add(satB);
+>>>>>>> branch 'master' of https://github.com/Ciper997/CMPE3326_SPR18_Team7.git
 		
 		
 		//////////Separators for "Tasks", "Task Description", "Add Task"
@@ -757,7 +849,11 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);		
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/Ciper997/CMPE3326_SPR18_Team7.git
 	    test.validate();
 	    test.repaint();
 	}
@@ -941,6 +1037,30 @@ public class StudentCalendar extends JFrame{
 		public void actionPerformed(ActionEvent arg0) 
 		{
 			currentDate = day;
+		}
+	}
+
+	private class displayEventButton implements ActionListener {
+		private int index;
+
+		public displayEventButton(int index) {
+			this.index = index;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			test.removeAll();
+			addEvPan(name, date, pri, location, time, desc);
+		}
+
+	private class getDay implements ActionListener {
+		private String day;
+
+		public getDay(String day){
+			this.day = day;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+
 		}
 	}
 
