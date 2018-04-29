@@ -313,7 +313,7 @@ public class StudentCalendar extends JFrame{
 	    scroll1.setSize(new Dimension(280, 430));
 
 	    buttonPanel = new JPanel();
-	    buttonPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+	  
 	    buttonPanel.setLayout(new GridBagLayout());
 	    buttonPanel.setSize(new Dimension(300, 400));
 
@@ -327,48 +327,8 @@ public class StudentCalendar extends JFrame{
 	    constraint.weighty = 1.0f;
 
 	    
-	    
-	    /////////////////////////////////////////////////////////////
-	    //Dynamically adds buttons
-	    data = base.getDataByDate(currentDate);
-	    
-	    for(int i = 0; i < data.length; i++)
-	    {
-	    	buttons[i] = new JButton();
-	        
-	        buttons[i].setText(data[i][2]);
-	        
-	        buttons[i].setHorizontalAlignment(SwingConstants.LEFT);
-	        
-	        if(data[i][1].equals("1"))
-	        {
-	        	buttons[i].addActionListener(new displayEventButton(i));
-	        	
-	        }
-	        else if(data[i][1].equals("2"))
-	        {
-	        	buttons[i].addActionListener(new displayHomeworkButton(i));
-	        }
-	        else 
-	        {
-	        	buttons[i].addActionListener(new displayReminderButton(i));
-	        }
-	        
-	        buttons[i].validate();
-     		buttons[i].repaint();
-     		
-	        buttonPanel.add(buttons[i], constraint);
-	        
-	        buttonPanel.validate();
-			buttonPanel.repaint();
-	    }
-
-	    scroll1.setViewportView(buttonPanel);
-	    this.rootPane.add(scroll1);
-	    scroll1.updateUI();
-	   
-		scroll1.validate();
-		scroll1.repaint();
+	    /////////////////////////////////////////////////////////////////////////
+	    setButtons(currentDate);
 		/////////////////////////////////////////////////////////////////////////
 		
 		
@@ -921,6 +881,47 @@ public class StudentCalendar extends JFrame{
 	    test.validate();
 	    test.repaint();
 	}
+	
+	void setButtons(String date) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException 
+	{
+		 /////////////////////////////////////////////////////////////
+	    //Dynamically adds buttons
+	    data = base.getDataByDate(date);
+	    
+	    for(int i = 0; i < data.length; i++)
+	    {
+	    	buttons[i] = new JButton();
+	        
+	        buttons[i].setText(data[i][2]);
+	        
+	        buttons[i].setHorizontalAlignment(SwingConstants.LEFT);
+	        
+	        if(data[i][1].equals("1"))
+	        {
+	        	buttons[i].addActionListener(new displayEventButton(i));
+	        	
+	        }
+	        else if(data[i][1].equals("2"))
+	        {
+	        	buttons[i].addActionListener(new displayHomeworkButton(i));
+	        }
+	        else 
+	        {
+	        	buttons[i].addActionListener(new displayReminderButton(i));
+	        }
+	 		
+	        buttonPanel.add(buttons[i], constraint);
+	    }
+	
+	    scroll1.setViewportView(buttonPanel);
+	    this.rootPane.add(scroll1);
+	    scroll1.updateUI();
+	   
+		scroll1.validate();
+		scroll1.repaint();
+		
+	}
+	
 
 
 	private class addTaskButton implements ActionListener {
@@ -1031,6 +1032,16 @@ public class StudentCalendar extends JFrame{
 		public void actionPerformed(ActionEvent arg0) 
 		{
 			currentDate = day;
+			try {
+				buttonPanel.removeAll();
+				setButtons(currentDate);
+				buttonPanel.validate();
+				buttonPanel.repaint();
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 
