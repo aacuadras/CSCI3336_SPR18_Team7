@@ -1,4 +1,4 @@
-package GUI;
+//package GUI;
 import java.sql.*;
 
 /*
@@ -147,26 +147,6 @@ public class EventBase {
         return sorted;
     }
 
-	//Helper: Uses the given type to pass the info the according function
-	// public void typeEvent(int id, int type, String name, String desc, int priority, String date, String location, String duration, String deadline, int complete) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-		
-	// 	//Event
-	// 	if (type == 1)
-	// 	{
-	// 		addEvent(id, type, name, desc, priority, date, location, duration);
-	// 	}
-	// 	//Homework
-	// 	else if (type == 2)
-	// 	{
-	// 		addHomework(id, type, name, desc, priority, date, deadline, complete);
-	// 	}
-	// 	//Reminder
-	// 	else
-	// 	{
-	// 		addReminder(id, type, name, desc, priority, date);
-	// 	}
-	// }
-
 	public void testPrint() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -224,6 +204,26 @@ public class EventBase {
         }
         connection.close();
 	}
+
+    public void updateBase(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection connection = DriverManager.getConnection("jdbc:mysql://35.225.154.164:3306/GSO?autoReconnect=true&useSSL=false","root", "12345");
+        Statement statement = connection.createStatement();
+        String update = "update Event_Note set Complete = 'Yes' where ID = '" + id + "'";
+        statement.executeUpdate(update);
+        connection.close();
+    }
+
+    public void removeBase(String id) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.jdbc.Driver").newInstance();
+        Connection connection = DriverManager.getConnection("jdbc:mysql://35.225.154.164:3306/GSO?autoReconnect=true&useSSL=false","root", "12345");
+        Statement statement = connection.createStatement();
+        String update = "delete from Event_Note where ID = '" + id + "'";
+        statement.executeUpdate(update);
+        connection.close();
+    }
 	
 	public String[][] getAllData() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 

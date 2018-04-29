@@ -1,4 +1,4 @@
-package GUI;
+//package GUI;
 import java.sql.*;
 
 import java.awt.*;
@@ -54,6 +54,7 @@ public class StudentCalendar extends JFrame{
 		
 	
 		sunF = new JTextField();
+		sunF.setText("29");
 		sunF.setSize(30,30);
 		sunF.setLocation(70,0);
 		sunF.setEditable(false);
@@ -67,6 +68,7 @@ public class StudentCalendar extends JFrame{
 		
 		//Monday
 		monF = new JTextField();
+		monF.setText("30");
 		monF.setSize(30,30);
 		monF.setLocation(200,0);
 		monF.setEditable(false);
@@ -80,6 +82,7 @@ public class StudentCalendar extends JFrame{
 		
 		//Tuesday
 		tueF = new JTextField();
+		tueF.setText("01");
 		tueF.setSize(30,30);
 		tueF.setLocation(330,0);
 		tueF.setEditable(false);
@@ -93,6 +96,7 @@ public class StudentCalendar extends JFrame{
 		
 		//Wednesday
 		wedF = new JTextField();
+		wedF.setText("02");
 		wedF.setSize(30,30);
 		wedF.setLocation(465,0);
 		wedF.setEditable(false);
@@ -106,6 +110,7 @@ public class StudentCalendar extends JFrame{
 		
 		//Thursday
 		thuF = new JTextField();
+		thuF.setText("03");
 		thuF.setSize(30,30);
 		thuF.setLocation(590,0);
 		thuF.setEditable(false);
@@ -119,6 +124,7 @@ public class StudentCalendar extends JFrame{
 		
 		//Friday
 		friF = new JTextField();
+		friF.setText("04");
 		friF.setSize(30,30);
 		friF.setLocation(720,0);
 		friF.setEditable(false);
@@ -132,6 +138,7 @@ public class StudentCalendar extends JFrame{
 		
 		//Saturday
 		satF = new JTextField();
+		satF.setText("05");
 		satF.setSize(30,30);
 		satF.setLocation(850,0);
 		satF.setEditable(false);
@@ -211,8 +218,8 @@ public class StudentCalendar extends JFrame{
 		//Task table starts here
 		////////////////////////////////////
 
-		label6 = new JLabel("Tasks");
-		label6.setSize(100,30);
+		label6 = new JLabel("Tasks: 04-29-2018");
+		label6.setSize(150,30);
 		label6.setLocation(10, 120);
 		add(label6);
 
@@ -233,7 +240,7 @@ public class StudentCalendar extends JFrame{
 		
 		////////////Task Description Area
 		label5 = new JLabel("Task Description");
-		label5.setSize(100,30);
+		label5.setSize(120,30);
 		label5.setLocation(300, 120);
 		add(label5);
 
@@ -521,7 +528,7 @@ public class StudentCalendar extends JFrame{
 	//////////////////////
 	//If event is selected
 	//////////////////////
-	private void addEvPan(String name, String date, String pri, String location, String time, String desc)
+	private void addEvPan(String name, String date, String pri, String location, String time, String desc, int i)
 	{
 		//test = new JPanel();
 		test.setSize(250,495);
@@ -606,6 +613,7 @@ public class StudentCalendar extends JFrame{
 	    delB = new JButton("Delete Task");
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
+	    delB.addActionListener(new deleteButton(i));
 	    test.add(delB);
 	    
 	    test.validate();
@@ -616,7 +624,7 @@ public class StudentCalendar extends JFrame{
 	/////////////////////////
 	//If homework is selected
 	/////////////////////////
-	private void addHwPan(String name, String date, String pri, String deadline, String complete, String desc)
+	private void addHwPan(String name, String date, String pri, String deadline, String complete, String desc, int i)
 	{
 		
 		test.setSize(250,495);
@@ -685,6 +693,7 @@ public class StudentCalendar extends JFrame{
 		comB = new JButton("Complete");
 		comB.setSize(100,30);
 		comB.setLocation(140,120);
+		comB.addActionListener(new completeButton(i));
 		
 		if(evDTF5.getText().equals("No"))
 			test.add(comB);
@@ -694,7 +703,7 @@ public class StudentCalendar extends JFrame{
 		evDL7.setSize(100,30);
 		evDL7.setLocation(0,150);
 		test.add(evDL7);
-		textArea2 = new JTextArea();
+		textArea2 = new JTextArea(desc);
 		textArea2.setSize(270,255);
 		textArea2.setLocation(0,180);
 		textArea2.setEditable(false);
@@ -706,6 +715,7 @@ public class StudentCalendar extends JFrame{
 		delB = new JButton("Delete Task");
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
+	    delB.addActionListener(new deleteButton(i));
 	    test.add(delB);		
 	    test.validate();
 	    test.repaint();
@@ -714,7 +724,7 @@ public class StudentCalendar extends JFrame{
 	//////////////////////////
 	//If reminder is selected
 	//////////////////////////	
-	private void addRmPan(String name, String date, String pri, String desc)
+	private void addRmPan(String name, String date, String pri, String desc, int i)
 	{
 		test.setSize(250,495);
 		test.setLocation(300,150);
@@ -775,6 +785,7 @@ public class StudentCalendar extends JFrame{
 		delB = new JButton("Delete Task");
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
+	    delB.addActionListener(new deleteButton(i));
 	    test.add(delB);	
 
 	    test.validate();
@@ -879,6 +890,15 @@ public class StudentCalendar extends JFrame{
 					textArea4.setText("");
 				}
 
+				buttonPanel.removeAll();
+
+				buttonPanel.validate();
+				buttonPanel.repaint();
+				setButtons(currentDate);
+				scroll1.updateUI();
+				scroll1.validate();
+				scroll1.repaint();
+
 			 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
@@ -898,7 +918,7 @@ public class StudentCalendar extends JFrame{
 			test.removeAll();
 			test.validate();
 			test.repaint();
-			addEvPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3]);
+			addEvPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3], i);
 		}
 		
 	}
@@ -915,7 +935,7 @@ public class StudentCalendar extends JFrame{
 			test.removeAll();
 			test.validate();
 			test.repaint();
-			addHwPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3]);
+			addHwPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3], i);
 		}
 		
 	}
@@ -932,7 +952,7 @@ public class StudentCalendar extends JFrame{
 			test.removeAll();
 			test.validate();
 			test.repaint();
-			addRmPan(data[i][2], data[i][5], data[i][4], data[i][3]);
+			addRmPan(data[i][2], data[i][5], data[i][4], data[i][3], i);
 		}
 		
 	}
@@ -947,8 +967,14 @@ public class StudentCalendar extends JFrame{
 		public void actionPerformed(ActionEvent arg0) 
 		{
 			currentDate = day;
+			label6.setText("Tasks: " + day);
+
 			try {
 				buttonPanel.removeAll();
+
+				test.removeAll();
+				test.validate();
+				test.repaint();
 
 				buttonPanel.validate();
 				buttonPanel.repaint();
@@ -963,6 +989,59 @@ public class StudentCalendar extends JFrame{
 				e.printStackTrace();
 			}
 			
+		}
+	}
+
+	private class deleteButton implements ActionListener {
+		private int i;
+
+		public deleteButton(int i) {
+			this.i = i;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+
+			try {
+				base.removeBase(data[i][0]);
+				buttonPanel.removeAll();
+
+				test.removeAll();
+				test.validate();
+				test.repaint();
+
+				buttonPanel.validate();
+				buttonPanel.repaint();
+				setButtons(currentDate);
+				scroll1.updateUI();
+				scroll1.validate();
+				scroll1.repaint();
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private class completeButton implements ActionListener {
+		private int i;
+
+		public completeButton(int i) {
+			this.i = i;
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				data[i][7] = "Yes";
+				base.updateBase(data[i][0]);
+				test.removeAll();
+				test.validate();
+				test.repaint();
+				addHwPan(data[i][2], data[i][5], data[i][4], data[i][6], data[i][7], data[i][3], i);
+			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
