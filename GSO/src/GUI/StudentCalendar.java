@@ -1,4 +1,4 @@
-package GUI;
+import java.sql.*;
 
 import java.awt.*;
 import javax.swing.*;
@@ -27,9 +27,10 @@ public class StudentCalendar extends JFrame{
 	private JPanel test;
 	private JSeparator sep, sep2, sep3, sep4, sep5, sep6, sep7, sep8, sep9, sep10;	//Lines
 	private boolean ev = false, hw = false, rm = false;		//Temporal variables to display middle panels
+	EventBase base = new EventBase();
 	
 	
-	public StudentCalendar()
+	public StudentCalendar() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException
 	{
 		//Setting size for the window
 		super("GSO");
@@ -446,9 +447,9 @@ public class StudentCalendar extends JFrame{
 		homework.add(hwL6);
 		
 		textArea3 = new JTextArea();
-		textArea1.setLineWrap(true);
-	    textArea1.setWrapStyleWord(true);
-	    textArea1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		textArea3.setLineWrap(true);
+	    textArea3.setWrapStyleWord(true);
+	    textArea3.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		textArea3.setSize(315,260);
 		textArea3.setLocation(0,150);
 		homework.add(textArea3);
@@ -523,7 +524,7 @@ public class StudentCalendar extends JFrame{
 		button1 = new JButton("Add Task");
 		button1.setSize(100,30);
 		button1.setLocation(750, 600);
-		//button1.addActionListener(new Button1Clicked());
+		button1.addActionListener(new addTaskButton());
 		add(button1);
 		
 		setVisible(true);
@@ -784,4 +785,51 @@ public class StudentCalendar extends JFrame{
 	    delB.setLocation(70,450);
 	    test.add(delB);	
 	}
+
+	private class addTaskButton implements ActionListener {
+		public void actionPerformed(ActionEvent arg0) {
+
+			try {
+
+				if (tabbedPane.getSelectedIndex() == 0)
+				{
+					base.addEvent("1", textField2.getText(), textArea1.getText(), textField3.getText(), textField1.getText(), textField4.getText(), textField5.getText());
+					textField2.setText("");
+					textField1.setText("MM-DD-YYYY");
+					textField3.setText("1,2 or 3");
+					textField4.setText("");
+					textField5.setText("HH:MM");
+					textArea1.setText("");
+				}
+				else if (tabbedPane.getSelectedIndex() == 1)
+				{
+					JRadioButton selected;
+					if (yeah.isSelected())
+						selected = yeah;
+					else
+						selected = nah;
+
+					base.addHomework("2", hwTF1.getText(), textArea3.getText(), hwTF3.getText(), hwTF2.getText(), hwTF4.getText(), selected.getText());
+					hwTF1.setText("");
+					hwTF2.setText("MM-DD-YYYY");
+					hwTF3.setText("1,2 or 3");
+					hwTF4.setText("MM-DD-YYYY");
+					selected.setSelected(false);
+					textArea3.setText("");
+				}
+				else if (tabbedPane.getSelectedIndex() == 2)
+				{
+					base.addReminder("3", rmTF1.getText(), textArea4.getText(), rmTF3.getText(), rmTF2.getText());
+					rmTF1.setText("");
+					rmTF2.setText("MM-DD-YYYY");
+					rmTF3.setText("1,2 or 3");
+					textArea4.setText("");
+				}
+
+			 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
