@@ -21,7 +21,7 @@ public class StudentCalendar extends JFrame{
 	private JLabel evDL1, evDL2, evDL3, evDL4, evDL5, evDL6, evDL7;		//Labels for the display of "event", "homework" or "reminder"
 	private JLabel hwL1, hwL2, hwL3, hwL4, hwL5, hwL6;		//Labels for "homework" tab
 	private JLabel rmL1, rmL2, rmL3, rmL4;		//Labels for "reminder" tab
-	private JScrollPane scroll1;		//Scroll for button table
+	private JScrollPane scroll1 = new JScrollPane();		//Scroll for button table
 	private JRadioButton yeah, nah;		//Radio buttons in "homework" tab
 	private JPanel buttonPanel;			//Button panel for radio buttons
 	private GridBagConstraints constraint;		//Constraints for button table
@@ -52,98 +52,7 @@ public class StudentCalendar extends JFrame{
 		
 		////////////Days
 		
-		//Sunday
-/////////////// HEAD
-				sunF = new JTextField();
-				sunF.setSize(30,30);
-				sunF.setLocation(70,0);
-				sunF.setEditable(false);
-				add(sunF);
-				//Pressing this button changes the table to the tasks for sunday
-				sunB = new JButton("Sunday");
-				sunB.setSize(100,70);
-				sunB.setLocation(0,30);
-				sunB.addActionListener(new getDay("04-29-2018"));
-				add(sunB);
-				
-				//Monday
-				monF = new JTextField();
-				monF.setSize(30,30);
-				monF.setLocation(200,0);
-				monF.setEditable(false);
-				add(monF);
-				//Pressing this button changes the table to the tasks for monday
-				monB = new JButton("Monday");
-				monB.setSize(100,70);
-				monB.setLocation(130,30);
-				monB.addActionListener(new getDay("04-30-2018"));
-				add(monB);
-				
-				//Tuesday
-				tueF = new JTextField();
-				tueF.setSize(30,30);
-				tueF.setLocation(330,0);
-				tueF.setEditable(false);
-				add(tueF);
-				//Pressing this button changes the table to the tasks for tuesday
-				tueB = new JButton("Tuesday");
-				tueB.setSize(100,70);
-				tueB.setLocation(260,30);
-				tueB.addActionListener(new getDay("05-01-2018"));
-				add(tueB);
-				
-				//Wednesday
-				wedF = new JTextField();
-				wedF.setSize(30,30);
-				wedF.setLocation(465,0);
-				wedF.setEditable(false);
-				add(wedF);
-				//Pressing this button changes the table to the tasks for wednesday
-				wedB = new JButton("Wednesday");
-				wedB.setSize(105,70);
-				wedB.setLocation(390,30);
-				wedB.addActionListener(new getDay("05-02-2018"));
-				add(wedB);
-				
-				//Thursday
-				thuF = new JTextField();
-				thuF.setSize(30,30);
-				thuF.setLocation(590,0);
-				thuF.setEditable(false);
-				add(thuF);
-				//Pressing this button changes the table to the tasks for thursday
-				thuB = new JButton("Thursday");
-				thuB.setSize(100,70);
-				thuB.setLocation(520,30);
-				thuB.addActionListener(new getDay("05-03-2018"));
-				add(thuB);
-				
-				//Friday
-				friF = new JTextField();
-				friF.setSize(30,30);
-				friF.setLocation(720,0);
-				friF.setEditable(false);
-				add(friF);
-				//Pressing this button changes the table to the tasks for friday
-				friB = new JButton("Friday");
-				friB.setSize(100,70);
-				friB.setLocation(650,30);
-				friB.addActionListener(new getDay("05-04-2018"));
-				add(friB);
-				
-				//Saturday
-				satF = new JTextField();
-				satF.setSize(30,30);
-				satF.setLocation(850,0);
-				satF.setEditable(false);
-				add(satF);
-				//Pressing this button changes the table to the tasks for saturday
-				satB = new JButton("Saturday");
-				satB.setSize(100,70);
-				satB.setLocation(780,30);
-				satB.addActionListener(new getDay("05-05-2018"));
-				add(satB);
-
+	
 		sunF = new JTextField();
 		sunF.setSize(30,30);
 		sunF.setLocation(70,0);
@@ -314,17 +223,7 @@ public class StudentCalendar extends JFrame{
 
 	    buttonPanel = new JPanel();
 	  
-	    buttonPanel.setLayout(new GridBagLayout());
-	    buttonPanel.setSize(new Dimension(300, 400));
-
-	    constraint = new GridBagConstraints();
-	    constraint.anchor = GridBagConstraints.CENTER;
-	    constraint.fill = GridBagConstraints.HORIZONTAL;
-	    constraint.ipady = 35;
-	    constraint.gridx = 0;
-	    constraint.gridy = GridBagConstraints.RELATIVE;
-	    constraint.weightx = 1.0f;
-	    constraint.weighty = 1.0f;
+	    
 
 	    
 	    /////////////////////////////////////////////////////////////////////////
@@ -886,7 +785,21 @@ public class StudentCalendar extends JFrame{
 	{
 		 /////////////////////////////////////////////////////////////
 	    //Dynamically adds buttons
+		
+		buttonPanel.setLayout(new GridBagLayout());
+	    buttonPanel.setSize(new Dimension(300, 400));
+
+	    constraint = new GridBagConstraints();
+	    constraint.anchor = GridBagConstraints.CENTER;
+	    constraint.fill = GridBagConstraints.HORIZONTAL;
+	    constraint.ipady = 35;
+	    constraint.gridx = 0;
+	    constraint.gridy = GridBagConstraints.RELATIVE;
+	    constraint.weightx = 1.0f;
+	    constraint.weighty = 1.0f;
+	    /////////////////////////////////////////////////////////////////////
 	    data = base.getDataByDate(date);
+	    
 	    
 	    for(int i = 0; i < data.length; i++)
 	    {
@@ -914,6 +827,7 @@ public class StudentCalendar extends JFrame{
 	    }
 	
 	    scroll1.setViewportView(buttonPanel);
+	    scroll1.getParent();
 	    this.rootPane.add(scroll1);
 	    scroll1.updateUI();
 	   
@@ -1034,9 +948,12 @@ public class StudentCalendar extends JFrame{
 			currentDate = day;
 			try {
 				buttonPanel.removeAll();
-				setButtons(currentDate);
+
 				buttonPanel.validate();
 				buttonPanel.repaint();
+				setButtons(currentDate);
+
+				
 			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
