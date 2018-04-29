@@ -625,7 +625,7 @@ public class StudentCalendar extends JFrame{
 	/////////////////////////
 	//If homework is selected
 	/////////////////////////
-	private void addHwPan()
+	private void addHwPan(String name, String date, String pri, String deadline, String complete, String desc)
 	{
 		test = new JPanel();
 		test.setSize(250,495);
@@ -642,7 +642,7 @@ public class StudentCalendar extends JFrame{
 		evDL2.setSize(100,30);
 		evDL2.setLocation(0,30);
 		test.add(evDL2);
-		evDTF1 = new JTextField();
+		evDTF1 = new JTextField(name);
 		evDTF1.setSize(200,30);
 		evDTF1.setLocation(40,30);
 		evDTF1.setEditable(false);
@@ -653,7 +653,7 @@ public class StudentCalendar extends JFrame{
 		evDL3.setSize(100,30);
 		evDL3.setLocation(0,60);
 		test.add(evDL3);
-		evDTF2 = new JTextField();
+		evDTF2 = new JTextField(date);
 		evDTF2.setSize(90,30);
 		evDTF2.setLocation(40,60);
 		evDTF2.setEditable(false);
@@ -664,7 +664,7 @@ public class StudentCalendar extends JFrame{
 		evDL4.setSize(100,30);
 		evDL4.setLocation(140,60);
 		test.add(evDL4);
-		evDTF3 = new JTextField();
+		evDTF3 = new JTextField(pri);
 		evDTF3.setSize(50,30);
 		evDTF3.setLocation(190,60);
 		evDTF3.setEditable(false);
@@ -675,7 +675,7 @@ public class StudentCalendar extends JFrame{
 		evDL5.setSize(100,30);
 		evDL5.setLocation(0,90);
 		test.add(evDL5);
-		evDTF4 = new JTextField();
+		evDTF4 = new JTextField(deadline);
 		evDTF4.setSize(90,30);
 		evDTF4.setLocation(60,90);
 		evDTF4.setEditable(false);
@@ -686,7 +686,7 @@ public class StudentCalendar extends JFrame{
 		evDL6.setSize(100,30);
 		evDL6.setLocation(0,120);
 		test.add(evDL6);
-		evDTF5 = new JTextField("N");
+		evDTF5 = new JTextField(complete);
 		evDTF5.setSize(30,30);
 		evDTF5.setLocation(60,120);
 		evDTF5.setEditable(false);
@@ -695,7 +695,7 @@ public class StudentCalendar extends JFrame{
 		comB.setSize(100,30);
 		comB.setLocation(140,120);
 		
-		if(evDTF5.getText().equals("N"))
+		if(evDTF5.getText().equals("No"))
 			test.add(comB);
 		
 		//Description
@@ -716,6 +716,9 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);		
+
+	    test.validate();
+	    test.repaint();
 	}
 
 	//////////////////////////
@@ -738,7 +741,7 @@ public class StudentCalendar extends JFrame{
 		evDL2.setSize(100,30);
 		evDL2.setLocation(0,30);
 		test.add(evDL2);
-		evDTF1 = new JTextField();
+		evDTF1 = new JTextField(name);
 		evDTF1.setSize(200,30);
 		evDTF1.setLocation(40,30);
 		evDTF1.setEditable(false);
@@ -749,7 +752,7 @@ public class StudentCalendar extends JFrame{
 		evDL3.setSize(100,30);
 		evDL3.setLocation(0,60);
 		test.add(evDL3);
-		evDTF2 = new JTextField();
+		evDTF2 = new JTextField(date);
 		evDTF2.setSize(90,30);
 		evDTF2.setLocation(40,60);
 		evDTF2.setEditable(false);
@@ -760,7 +763,7 @@ public class StudentCalendar extends JFrame{
 		evDL4.setSize(100,30);
 		evDL4.setLocation(140,60);
 		test.add(evDL4);
-		evDTF3 = new JTextField();
+		evDTF3 = new JTextField(pri);
 		evDTF3.setSize(50,30);
 		evDTF3.setLocation(190,60);
 		evDTF3.setEditable(false);
@@ -771,7 +774,7 @@ public class StudentCalendar extends JFrame{
 		evDL7.setSize(100,30);
 		evDL7.setLocation(0,90);
 		test.add(evDL7);
-		textArea2 = new JTextArea();
+		textArea2 = new JTextArea(desc);
 		textArea2.setSize(270,255);
 		textArea2.setLocation(0,120);
 		textArea2.setEditable(false);
@@ -784,6 +787,9 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);	
+
+	    test.validate();
+	    test.repaint();
 	}
 
 	private class addTaskButton implements ActionListener {
@@ -836,7 +842,7 @@ public class StudentCalendar extends JFrame{
 		private int index;
 
 		public displayEventButton(int index) {
-			this.index = index
+			this.index = index;
 		}
 
 		public void actionPerformed(ActionEvent arg0) {
