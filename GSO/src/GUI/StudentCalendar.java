@@ -53,7 +53,7 @@ public class StudentCalendar extends JFrame{
 		////////////Days
 		
 		//Sunday
-<<<<<<< HEAD
+/////////////// HEAD
 				sunF = new JTextField();
 				sunF.setSize(30,30);
 				sunF.setLocation(70,0);
@@ -143,7 +143,7 @@ public class StudentCalendar extends JFrame{
 				satB.setLocation(780,30);
 				satB.addActionListener(new getDay("05-05-2018"));
 				add(satB);
-=======
+
 		sunF = new JTextField();
 		sunF.setSize(30,30);
 		sunF.setLocation(70,0);
@@ -153,7 +153,7 @@ public class StudentCalendar extends JFrame{
 		sunB = new JButton("Sunday");
 		sunB.setSize(100,70);
 		sunB.setLocation(0,30);
-		SunB.addActionListener(new getDay("04-29-2018"));
+		sunB.addActionListener(new getDay("04-29-2018"));
 		add(sunB);
 		
 		//Monday
@@ -233,7 +233,6 @@ public class StudentCalendar extends JFrame{
 		satB.setLocation(780,30);
 		satB.addActionListener(new getDay("05-05-2018"));
 		add(satB);
->>>>>>> branch 'master' of https://github.com/Ciper997/CMPE3326_SPR18_Team7.git
 		
 		
 		//////////Separators for "Tasks", "Task Description", "Add Task"
@@ -849,11 +848,6 @@ public class StudentCalendar extends JFrame{
 	    delB.setSize(120,30);
 	    delB.setLocation(70,450);
 	    test.add(delB);		
-<<<<<<< HEAD
-		
-=======
-
->>>>>>> branch 'master' of https://github.com/Ciper997/CMPE3326_SPR18_Team7.git
 	    test.validate();
 	    test.repaint();
 	}
@@ -1040,28 +1034,5 @@ public class StudentCalendar extends JFrame{
 		}
 	}
 
-	private class displayEventButton implements ActionListener {
-		private int index;
-
-		public displayEventButton(int index) {
-			this.index = index;
-		}
-
-		public void actionPerformed(ActionEvent arg0) {
-			test.removeAll();
-			addEvPan(name, date, pri, location, time, desc);
-		}
-
-	private class getDay implements ActionListener {
-		private String day;
-
-		public getDay(String day){
-			this.day = day;
-		}
-
-		public void actionPerformed(ActionEvent arg0) {
-
-		}
-	}
 
 }
